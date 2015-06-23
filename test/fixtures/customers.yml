@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  meter_no: MyString
+  district_id: 1
+  community_id: 1
+  building_id: 1
+  unit: 
+  floor: 1
+  room: 1
+  heating_status_id: 1
+  address: MyString
+
+two:
+  name: MyString
+  meter_no: MyString
+  district_id: 1
+  community_id: 1
+  building_id: 1
+  unit: 
+  floor: 1
+  room: 1
+  heating_status_id: 1
+  address: MyString

@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">用户信息</div>
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名称</th>
+          <th>节点类型</th>
+          <th>继承关系</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @category.each do |category| %>
+          <tr>
+            <td><%= category.id %></td>
+            <td><%= category.name %></td>
+            <td><%= category.nodetype %></td>
+            <td><%= category.ancestry %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
