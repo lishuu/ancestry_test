@@ -19,8 +19,8 @@ private
   def data
   	customers.map do |c|
   		[
-  			# link_to(c.name, c),
-  			c.name,
+  			link_to(c.name, c),
+  			# c.name,
   			c.meter_no,
   			c.district_name,
   			c.community_name,

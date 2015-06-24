@@ -30,10 +30,6 @@ var setting = {
 	}
 }
 
-// $(document).ready(function(){
-// 	$.fn.zTree.init($("#treeDemo"), setting );
-// })
-
 var treeNodes;
 function getJson() {
 	$.ajax({
@@ -54,4 +50,6 @@ function getJson() {
 
 $(document).ready(function(){
 	getJson();
+
+	
 })
