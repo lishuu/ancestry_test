@@ -1,8 +1,9 @@
 class CustomerDatatable
 	delegate :params, :h, :link_to, to: :@view
 
-	def initialize(view)
+	def initialize(view, param1)
 		@view = view
+    @c = param1
 	end
 
 	def as_json(ooptins = {})
@@ -20,7 +21,6 @@ private
   	customers.map do |c|
   		[
   			link_to(c.name, c),
-  			# c.name,
   			c.meter_no,
   			c.district_name,
   			c.community_name,
@@ -39,7 +39,7 @@ private
   end
 
   def fetch_customers
-  	customers = Customer.order("#{sort_column} #{sort_direction}")
+  	customers = Customer.where( @c ).order("#{sort_column} #{sort_direction}")
   	customers = customers.page(page).per_page(per_page)
   	if params[:sSearch].present?
   		customers = customers.where("name like :search", search: "%#{params[:sSearch]}%")
