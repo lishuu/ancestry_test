@@ -4,13 +4,49 @@
   <title>AncestryTest</title>
   <%= stylesheet_link_tag "application", params[:controller], :media => "all", 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "application", params[:controller], 'data-turbolinks-track' => true %>
-
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <div class="header">
+    <nav class="navbar navbar-static-top navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand"><b>应时为</b> 供热计量运维管理平台</a>
+      </div>
+        <ul class="nav navbar-nav">
+          <li class=""><a href="/topics">运行维护</a></li>
+          <li class=""><a href="/wiki">不要子菜单</a></li>
+          <li class=""><a href="/jobs">表号变更</a></li>
+          <li class=""><a href="/twitter">热用户管理</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统管理<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">小区管理</a></li>
+                <li><a href="#">热用户信息管理</a></li>
+              </ul>
+          </li>
+        </ul>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "首页",   '#' %></li>
+          <li><%= link_to "帮助",   '#' %></li>
+          <li><%= link_to "登录", '#' %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <%= yield %>
   </div>
 
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">Copyright © 上海应时为能源数据技术有限公司 2015. All Rights Reserved</p>
+    </div>
+  </footer>  
+
 </body>
+
 </html>

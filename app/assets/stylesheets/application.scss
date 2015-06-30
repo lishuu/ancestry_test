@@ -20,14 +20,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+.header .navbar-brand b {
+  color: #1D966B;
+}
 
 body {
+	background: #E7EAEC;
+	font-size: 13px;
   /*background: #e9e9e9 url(../images/base/tiny_grid.png) repeat 0 0;*/
 /*  font: 13px/1.7em 'Microsoft Yahei';
   font-family: "微软雅黑";
   height: 100%;*/
 }
+
+
 
 
 /*.treeDemo {
