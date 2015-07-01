@@ -12,7 +12,7 @@ setting = callback: onClick: zTreeOnClick
 
 getJson = ->
   $.ajax
-    url: 'tree.json'
+    url: 'tree_full.json'
     type: 'get'
     datatype: 'json'
     timeout: 1000

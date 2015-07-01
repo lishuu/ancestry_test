@@ -3,7 +3,7 @@ class CategoryController < ApplicationController
 		@category = Category.all
 	end
 
-	def tree_data
+	def tree_full
 		@category = Category.all
 		respond_to do |format|
   		format.html # index.html.erb

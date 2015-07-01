@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  
+
   # get 'customer/index'
   # get 'customer', to: 'customer/index'
   resources :customer
 
   root 'category#index'
 
-  get 'tree', to: 'category#tree_data'
+  get 'tree_full', to: 'category#tree_full'
   # get 'datatable_ajax', to: 'customer#datatable_ajax'
+  # get 'communities', to: 'communities#index'
+  get 'communities/index'
 end
