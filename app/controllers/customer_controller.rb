@@ -10,7 +10,7 @@ class CustomerController < ApplicationController
    customer_filters[:community_id] = cc if cc
    customer_filters[:building_id] = cb if cb
 
-   puts customer_filters
+   # puts customer_filters
 
   	respond_to do |format|
   	  format.html

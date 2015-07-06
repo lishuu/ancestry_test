@@ -44,4 +44,5 @@ getCustomers = (currentNode) ->
 
 $(document).ready ->
   getJson()
-return
+
+$(document).on('page:load', getJson);

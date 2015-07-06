@@ -2,8 +2,27 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+init_D = (curnode)->
+  $('#DataListTitle').text(curnode.name)
+  str = 'cid=' + curnode.id
+
+  if $.fn.dataTable.isDataTable('#community_table')
+    table = $('#community_table').DataTable()
+    table.ajax.url('../distrcits.json?' + str).load()
+  else
+    $('#community_table').dataTable
+      pagingType: "full_numbers"
+      Processing: true
+      ServerSide: true
+      ajax: '../distrcits.json?'+str
+      oLanguage: "sUrl": "../chinese.json"
+
+
+getNodeData = (currentNode) ->
+  init_D(currentNode)
+
 zTreeOnClick = (event, treeId, treeNode) -> 
-  getCommunities treeNode
+  getNodeData treeNode
 
 setting = callback: onClick: zTreeOnClick
 
@@ -21,3 +40,5 @@ getDistrictTree = ->
 
 $ ->
   getDistrictTree()
+
+$(document).on('page:load', getDistrictTree);
