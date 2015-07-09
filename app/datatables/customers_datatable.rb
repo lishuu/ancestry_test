@@ -1,4 +1,4 @@
-class CustomerDatatable
+class CustomersDatatable
 	delegate :params, :h, :link_to, to: :@view
 
 	def initialize(view, param1)

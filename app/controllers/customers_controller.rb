@@ -1,4 +1,4 @@
-class CustomerController < ApplicationController
+class CustomersController < ApplicationController
 
   def index
     cd = params[:cd]
@@ -14,7 +14,7 @@ class CustomerController < ApplicationController
 
   	respond_to do |format|
   	  format.html
-      format.json { render json: CustomerDatatable.new( view_context, customer_filters ) }
+      format.json { render json: CustomersDatatable.new( view_context, customer_filters ) }
   	end
   end
 

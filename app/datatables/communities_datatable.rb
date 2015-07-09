@@ -22,7 +22,8 @@ private
   		[
         c.id,
   			c.name,
-  			c.code
+  			c.code,
+        link_to('编辑', '#', class: "btn btn-xs btn-primary" ) + link_to('删除', '#', class: "btn btn-xs btn-danger")
   		]
   	end
   end

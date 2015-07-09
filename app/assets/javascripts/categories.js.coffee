@@ -3,7 +3,15 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 init_D = (curnode)->
-  $('#DataListTitle').text(curnode.name)
+  switch curnode.nodetype 
+    when 0 then s0 = '片区'
+    when 1 then s0 = '小区'
+    when 2 then s0 = '楼宇'
+
+  title_str = curnode.name
+  $('#DataListTitle').text(title_str.concat(' 的 ', s0, '信息'))
+  $('#link_text').text("新增"+s0)
+  $('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> 添加新"+s0);
   str = 'cid=' + curnode.id
 
   if $.fn.dataTable.isDataTable('#community_table')
@@ -18,7 +26,8 @@ init_D = (curnode)->
       oLanguage: "sUrl": "../chinese.json"
 
 getNodeData = (currentNode) ->
-  init_D(currentNode)
+  if currentNode.nodetype < 3
+    init_D(currentNode)
 
 zTreeOnClick = (event, treeId, treeNode) -> 
   getNodeData treeNode

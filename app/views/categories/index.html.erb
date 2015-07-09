@@ -16,10 +16,15 @@
   </div>
   <div class="col-md-9">
     <div class="panel panel-default">
-      <div class="panel-heading"><lable id="DataListTitle">←_←<lable></div>
+      <div class="panel-heading"><lable id="DataListTitle">←_←请先选择要操作的节点<lable></div>
       <div class="panel-body", id="DataListContainer">
-        <%= render 'communities' %> 
+        <%= render 'list' %> 
+        <div>
+          <%= link_to "新增项目", new_category_path, :id => "link_text",remote: true %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= render 'dialog' %>

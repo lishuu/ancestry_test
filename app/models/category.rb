@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
 	has_ancestry
+	validates :name, presence: true, length: { minimum: 6}
 
 	def open
 		return [0,1,2].include?(nodetype)

@@ -17,6 +17,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( category.js )
 # Rails.application.config.assets.precompile += %w( category.css )
 
-%w( category customer communities).each do |controller|
+%w( categories customers communities).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

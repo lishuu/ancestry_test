@@ -1,0 +1,30 @@
+<ol class="breadcrumb">
+  <li><a href="#">首页</a></li>
+  <li>系统管理</li>
+  <li class="active">小区管理</li>
+</ol>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">片区信息</div>
+      <div class="panel-body">
+        <div id="districtTree" class="ztree">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading"><lable id="DataListTitle">←_←<lable></div>
+      <div class="panel-body", id="DataListContainer">
+        <%= render 'communities' %> 
+        <div>
+          <%= link_to "新增项目", new_category_path, remote: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'dialog' %>
