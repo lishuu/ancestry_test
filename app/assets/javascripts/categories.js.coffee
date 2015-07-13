@@ -10,7 +10,12 @@ init_D = (curnode)->
 
   title_str = curnode.name
   $('#DataListTitle').text(title_str.concat(' 的 ', s0, '信息'))
+  
   $('#link_text').text("新增"+s0)
+  $('#link_text').attr('data-pnode', curnode.id);  
+  $('#link_text').attr('data-nodetype', curnode.nodetype+1); 
+  
+
   $('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> 添加新"+s0);
   str = 'cid=' + curnode.id
 
@@ -46,7 +51,15 @@ getDistrictTree = ->
       treeNodes = res
       $.fn.zTree.init $('#districtTree'), setting, treeNodes
 
+defaultTreeClick = ->
+  treeObj = $.fn.zTree.getZTreeObj("districtTree");
+  console.log(treeObj);
+  console.log("Delete tree!");
+  $.fn.zTree.destroy("districtTree");
+
+
 $ ->
   getDistrictTree()
+  defaultTreeClick()
 
 $(document).on('page:load', getDistrictTree);

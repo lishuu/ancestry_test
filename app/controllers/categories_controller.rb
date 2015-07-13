@@ -1,11 +1,29 @@
 class CategoriesController < ApplicationController
 
+  before_action :set_category, only: [:show, :edit, :update, :destory]
+  # skip_before_filter :verify_authenticity_token, only: [:submit]
+
 	def index
 		# @category = Category.all
 	end
 
-	 def new
+	def new
     @category = Category.new
+  end
+
+  def create 
+  	@ParentNode = Category.find(params[:pnode])
+  	@category = @ParentNode.children.create( category_params )
+    @category.nodetype = params[:nodetype]
+
+    respond_to do |format|
+      if @category.save
+        format.json { head :no_content}
+        format.js
+      else
+        format.json { render json: @category.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
@@ -37,21 +55,14 @@ class CategoriesController < ApplicationController
     end
   end
 
-	# def main 
- #  	root_id = params[:cid]
+private
 
- #    data_filters = {} 	
- #    data_filters[:id] = root_id if root_id
- #    puts '当前节点ID：#{root_id}'
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
- #    respond_to do |format|
- #    	format.html
- #    	format.json { render json: CommunitiesDatatable.new( view_context, data_filters) }
- #    end
-	# end
-
-	# def tree_d
-	# 	@category = Category.
-	# end
+  def category_params
+    params.require(:category).permit(:name, :code, :nodetype)
+  end
 
 end

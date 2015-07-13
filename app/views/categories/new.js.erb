@@ -1,11 +1,16 @@
-
-
 $('.modal-body').html('<%= j render("form") %>');
 
 $('#dialog').modal("show");
 
+var order_pnode = $('#link_text').data('pnode');
+var order_nodetype = $('#link_text').data('nodetype');
+
+$(".modal-body #pnode").val( order_pnode );
+$(".modal-body #nodetype").val( order_nodetype );
+
 $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()
 })
+
 
 

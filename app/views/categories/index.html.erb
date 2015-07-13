@@ -20,7 +20,7 @@
       <div class="panel-body", id="DataListContainer">
         <%= render 'list' %> 
         <div>
-          <%= link_to "新增项目", new_category_path, :id => "link_text",remote: true %>
+          <%= link_to "新增项目", new_category_path, id: "link_text",  data: {pnode: 0, nodetype: 0}, remote: true %>
         </div>
       </div>
     </div>
