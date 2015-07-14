@@ -4,25 +4,27 @@ class CommunitiesDatatable
 	def initialize(view, param)
 		@view = view
 		@param = param
-    puts @param[:id]
+    puts "当前节点ID：#{param}"
 	end
 
 	def as_json(ooptins = {})
 		{
 			sEcho: params[:sEcho].to_i,
-			iTotalRecords: Category.count,
+			iTotalRecords: mydatas.count,
 			iTotalDisplayRecords: mydatas.total_entries,
 			aaData: data
 		}
 	end
 
 private
+
   def data
-  	mydatas.map do |c|
+    puts "datatables 记录数: #{mydatas.count}"
+  	mydatas.map do |record|
   		[
-        c.id,
-  			c.name,
-  			c.code,
+        record.id,
+  			record.name,
+  			record.code,
         link_to('编辑', '#', class: "btn btn-xs btn-primary" ) + link_to('删除', '#', class: "btn btn-xs btn-danger")
   		]
   	end
@@ -33,13 +35,14 @@ private
   end
 
   def fetch_datas
-    # mydatas = Category.find(1).children
     mydatas = Category.find( @param[:id] ).children
     mydatas = mydatas.order("#{sort_column} #{sort_direction}")
     mydatas = mydatas.page(page).per_page(per_page)
    	if params[:sSearch].present?
-  		mydatas = mydatas.where("name like :search", search: "%#{params[:sSearch]}%")
+  		mydatas = mydatas.where("name like :search or code like :search ", search: "%#{params[:sSearch]}%")
   	end
+    puts mydatas
+    puts "mydatas.count = #{mydatas.count}"
   	mydatas   
   end 
 
@@ -48,7 +51,7 @@ private
   end
 
   def per_page
-  	params[:iDisplayLenght].to_i >0 ? params[:iDisplayLenght].to_i : 10
+    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
   end
 
    def sort_column
@@ -59,6 +62,5 @@ private
   def sort_direction
     params[:sSortDir_0]	== "desc" ? "desc" : "asc"
   end  
-
 
 end

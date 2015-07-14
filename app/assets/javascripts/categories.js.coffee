@@ -19,15 +19,17 @@ init_D = (curnode)->
   $('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> 添加新"+s0);
   str = 'cid=' + curnode.id
 
+  $('#community_table').data('source', 'distrcits.json?cid=' + curnode.id )
+
   if $.fn.dataTable.isDataTable('#community_table')
     table = $('#community_table').DataTable()
-    table.ajax.url('../distrcits.json?' + str).load()
+    table.ajax.url($('#community_table').data('source')).load()
   else
     $('#community_table').dataTable
       pagingType: "full_numbers"
-      Processing: true
-      ServerSide: true
-      ajax: '../distrcits.json?'+str
+      processing: true
+      serverSide: true 
+      ajaxSource: $('#community_table').data('source')
       oLanguage: "sUrl": "../chinese.json"
 
 getNodeData = (currentNode) ->
