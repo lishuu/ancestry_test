@@ -31,6 +31,14 @@ init_D = (curnode)->
       serverSide: true 
       ajaxSource: $('#community_table').data('source')
       oLanguage: "sUrl": "../chinese.json"
+      columns: [
+        {width: "10%"}
+        {width: "35%"}
+        {width: "35%", orderable: false}
+        {width: "5%", className: "center", searchable: false, orderable: false}
+        {width: "5%", className: "center", searchable: false, orderable: false}
+      ]
+  $("html, body").animate({ scrollTop: 0 }, "slow")
 
 getNodeData = (currentNode) ->
   if currentNode.nodetype < 3
@@ -39,7 +47,13 @@ getNodeData = (currentNode) ->
 zTreeOnClick = (event, treeId, treeNode) -> 
   getNodeData treeNode
 
-setting = callback: onClick: zTreeOnClick
+setFontCss = (treeId, treeNode) ->
+  if treeNode.level == 1
+    color: "blue"
+
+setting = 
+  callback: onClick: zTreeOnClick
+  view: fontCss: setFontCss
 
 getDistrictTree = ->
   $.ajax
@@ -51,7 +65,10 @@ getDistrictTree = ->
       alert '网络延时，请重试。'
     success: (res) ->
       treeNodes = res
-      $.fn.zTree.init $('#districtTree'), setting, treeNodes
+      tree = $.fn.zTree.init $('#districtTree'), setting, treeNodes
+      node = tree.getNodes()[0]
+      getNodeData node
+
 
 defaultTreeClick = ->
   treeObj = $.fn.zTree.getZTreeObj("districtTree");
@@ -62,6 +79,5 @@ defaultTreeClick = ->
 
 $ ->
   getDistrictTree()
-  defaultTreeClick()
 
 $(document).on('page:load', getDistrictTree);

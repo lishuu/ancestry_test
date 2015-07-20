@@ -1,5 +1,5 @@
 class CommunitiesDatatable
-	delegate :params, :h, :link_to, to: :@view
+	delegate :params, :h, :link_to, :fa_icon, :edit_category_path, to: :@view
 
 	def initialize(view, param)
 		@view = view
@@ -25,7 +25,9 @@ private
         record.id,
   			record.name,
   			record.code,
-        link_to('编辑', '#', class: "btn btn-xs btn-primary" ) + link_to('删除', '#', class: "btn btn-xs btn-danger")
+        link_to( fa_icon('pencil-square-o'), edit_category_path(record), remote: true, class: "btn btn-xs btn-primary" ),
+        link_to( fa_icon('trash-o'), '#', class: "btn btn-xs btn-danger")
+
   		]
   	end
   end

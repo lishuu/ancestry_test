@@ -15,6 +15,8 @@ gem 'bootstrap-sass', '~> 3.3.4.1'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'will_paginate', '~> 3.0.7'
 gem 'hirb-unicode'
+gem 'font-awesome-rails','~> 4.3.0.0'
+gem 'toastr_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

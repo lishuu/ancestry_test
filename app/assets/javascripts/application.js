@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require jquery.ztree.core-3.5
 //= require bootstrap-sprockets
+//= require fnReloadAjax
 
 $(document).ajaxError(function(event,xhr,options,exc) {
     

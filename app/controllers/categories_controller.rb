@@ -26,6 +26,20 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @category.update(category_params)
+        format.json { head :no_content }
+        format.js
+      else
+        format.json { render json: @category.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def show
   	@category = Category.find(params[:id])
   end
