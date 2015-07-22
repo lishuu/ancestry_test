@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 
-  before_action :set_category, only: [:show, :edit, :update, :destory]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
   # skip_before_filter :verify_authenticity_token, only: [:submit]
 
 	def index
@@ -42,6 +42,18 @@ class CategoriesController < ApplicationController
 
   def show
   	@category = Category.find(params[:id])
+  end
+
+  def destroy
+    puts "Ready for destroy method."
+    puts @category
+    puts "========================="
+    @category.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to categories_url }
+      format.json { head :no_content }
+    end
   end
 
 	def customerlists

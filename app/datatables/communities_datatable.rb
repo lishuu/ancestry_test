@@ -26,8 +26,7 @@ private
   			record.name,
   			record.code,
         link_to( fa_icon('pencil-square-o'), edit_category_path(record), remote: true, class: "btn btn-xs btn-primary" ),
-        link_to( fa_icon('trash-o'), '#', class: "btn btn-xs btn-danger")
-
+        link_to( fa_icon('trash-o'), record, method: :delete, remote: true, data: { confirm: "您确定删除当前数据吗？" }, class: "btn btn-xs btn-danger" )
   		]
   	end
   end

@@ -18,6 +18,7 @@
 //= require jquery.ztree.core-3.5
 //= require bootstrap-sprockets
 //= require fnReloadAjax
+//= require toastr_rails
 
 $(document).ajaxError(function(event,xhr,options,exc) {
     
@@ -30,4 +31,25 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     er+="</ul>"
     $("#error_explanation").html(er);
        
+});
+
+$(document).ready(function() {
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "2000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+
 });
