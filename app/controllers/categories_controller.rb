@@ -18,6 +18,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
+        flash.now[:notice] = "数据新建成功！"
         format.json { head :no_content}
         format.js
       else
@@ -32,9 +33,11 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
+        flash.now[:notice] = "数据更新成功！"
         format.json { head :no_content }
         format.js
       else
+        flash.now[:error] = "数据更新失败！"
         format.json { render json: @category.errors.full_messages, status: :unprocessable_entity }
       end
     end
@@ -45,10 +48,11 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    puts "Ready for destroy method."
-    puts @category
-    puts "========================="
-    @category.destroy
+    if @category.has_children?
+      flash.now[:warning] = "当前记录已存在子记录，无法删除！"
+    else
+      flash.now[:notice] = "记录删除成功！" if @category.destroy
+    end
     respond_to do |format|
       format.js
       format.html { redirect_to categories_url }

@@ -1,4 +1,4 @@
 
 $('#dialog').modal('toggle');
-$('#community_table').dataTable().fnReloadAjax()
-toastr['success']('更新数据成功！')
+$("#notice").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
+$('#community_table').dataTable().fnReloadAjax();

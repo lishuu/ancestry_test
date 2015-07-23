@@ -1,4 +1,4 @@
 // Hide dialog
 $('#dialog').modal('toggle')
+$("#notice").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
 $('#community_table').dataTable().fnReloadAjax()
-toastr['success']('保存数据成功！')

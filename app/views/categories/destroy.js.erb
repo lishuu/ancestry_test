@@ -1,3 +1,4 @@
 console.log("destroy.js.erb")
+$("#notice").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
 $('#community_table').dataTable().fnReloadAjax()
-toastr['success']('删除数据成功！')
+// toastr['success']('删除数据成功！')

@@ -23,6 +23,7 @@
 $(document).ajaxError(function(event,xhr,options,exc) {
     
     var errors = JSON.parse(xhr.responseText);
+    // console.log(errors)
     var er ="<ul>";
     for(var i = 0; i < errors.length; i++){
         var list = errors[i];
@@ -53,3 +54,16 @@ $(document).ready(function() {
   }
 
 });
+
+// $(document).ajaxComplete( function(event, request) {
+//   var flash = $.parseJSON(request.getResponseHeader('X-Flash-Messages'));
+//   console.log(flash);
+//   if (!flash) return;
+//   console.log("开始显示 flash.notice ")
+//   if (flash.notice) { toastr['success'](flash.notice); }
+//   // if(flash.notice) { /* code to display the 'notice' flash */ $('.flash.notice').html(flash.notice); }
+//   // if(flash.error) { /* code to display the 'error' flash */ alert(flash.error); }
+//   //so forth
+// });
+
+
