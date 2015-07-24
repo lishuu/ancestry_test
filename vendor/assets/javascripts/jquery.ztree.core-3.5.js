@@ -1050,12 +1050,12 @@
 			if (node.isParent) {
 				node.open = !node.open;
 				if (node.iconOpen && node.iconClose) {
-					icoObj.attr("style", view.makeNodeIcoStyle(setting, node));
+					icoObj.attr("style", view.makeNodeIcoStyle(setting, node)); 
 				}
 
 				if (node.open) {
-					view.replaceSwitchClass(node, switchObj, consts.folder.OPEN);
-					view.replaceIcoClass(node, icoObj, consts.folder.OPEN);
+					// view.replaceSwitchClass(node, switchObj, consts.folder.OPEN);
+					// view.replaceIcoClass(node, icoObj, consts.folder.OPEN);
 					if (animateFlag == false || setting.view.expandSpeed == "") {
 						ulObj.show();
 						tools.apply(callback, []);
@@ -1068,8 +1068,8 @@
 						}
 					}
 				} else {
-					view.replaceSwitchClass(node, switchObj, consts.folder.CLOSE);
-					view.replaceIcoClass(node, icoObj, consts.folder.CLOSE);
+					// view.replaceSwitchClass(node, switchObj, consts.folder.CLOSE);
+					// view.replaceIcoClass(node, icoObj, consts.folder.CLOSE);
 					if (animateFlag == false || setting.view.expandSpeed == "" || !(node[childKey] && node[childKey].length > 0)) {
 						ulObj.hide();
 						tools.apply(callback, []);
@@ -1147,16 +1147,31 @@
 			return (fontCss && ((typeof fontCss) != "function")) ? fontCss : {};
 		},
 		makeNodeIcoClass: function(setting, node) {
-			var icoCss = ["ico"];
+			// var icoCss = ["ico"]; masked by lishu;
+			var icoCss = [];
 			if (!node.isAjaxing) {
-				icoCss[0] = (node.iconSkin ? node.iconSkin + "_" : "") + icoCss[0];
-				if (node.isParent) {
-					icoCss.push(node.open ? consts.folder.OPEN : consts.folder.CLOSE);
-				} else {
-					icoCss.push(consts.folder.DOCU);
+				// icoCss[0] = (node.iconSkin ? node.iconSkin + "_" : "") + icoCss[0];
+				if (node.level == 0) {
+					icoCss.push("fa fa-university ");
 				}
+				if (node.level == 1) {
+          icoCss.push("fa fa-cubes");
+				}
+				if (node.level ==2) {
+          icoCss.push("fa fa-cube");
+				}
+				if (node.level ==3) {
+					icoCss.push("fa fa-building");
+				}
+				// if (node.isParent) {
+				// 	// icoCss.push(node.open ? consts.folder.OPEN : consts.folder.CLOSE); //masked by lishu;
+				// 	icoCss.push("fa fa-home");
+				// } else {
+				// 	icoCss.push(consts.folder.DOCU);
+				// }
 			}
-			return consts.className.BUTTON + " " + icoCss.join('_');
+			// return consts.className.BUTTON + " " + icoCss.join('_');  //masked by lishu
+			return icoCss;
 		},
 		makeNodeIcoStyle: function(setting, node) {
 			var icoStyle = [];
