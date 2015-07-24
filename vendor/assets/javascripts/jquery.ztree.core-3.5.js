@@ -1054,7 +1054,7 @@
 				}
 
 				if (node.open) {
-					// view.replaceSwitchClass(node, switchObj, consts.folder.OPEN);
+					// view.replaceSwitchClass(node, switchObj, consts.folder.OPEN); masked by lishu	
 					// view.replaceIcoClass(node, icoObj, consts.folder.OPEN);
 					if (animateFlag == false || setting.view.expandSpeed == "") {
 						ulObj.show();
@@ -1068,7 +1068,7 @@
 						}
 					}
 				} else {
-					// view.replaceSwitchClass(node, switchObj, consts.folder.CLOSE);
+					// view.replaceSwitchClass(node, switchObj, consts.folder.CLOSE);  masked by lishu
 					// view.replaceIcoClass(node, icoObj, consts.folder.CLOSE);
 					if (animateFlag == false || setting.view.expandSpeed == "" || !(node[childKey] && node[childKey].length > 0)) {
 						ulObj.hide();
