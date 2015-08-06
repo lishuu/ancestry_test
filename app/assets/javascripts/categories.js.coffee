@@ -72,8 +72,6 @@ getDistrictTree = ->
 
 defaultTreeClick = ->
   treeObj = $.fn.zTree.getZTreeObj("districtTree");
-  console.log(treeObj);
-  console.log("Delete tree!");
   $.fn.zTree.destroy("districtTree");
 
 

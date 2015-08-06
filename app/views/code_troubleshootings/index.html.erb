@@ -1,0 +1,33 @@
+<ol class="breadcrumb">
+  <li> <%= link_to content_tag(:i, fa_icon("home", text: "首页") ), "#" %> </li>
+  <li>系统管理</li>
+  <li class="active">故障描述及处理意见</li>
+</ol>
+
+<div class="row">
+  <div class="col-lg-2">
+    <div class="panel panel-default" id="panels">
+      <div class="panel-heading"><%= fa_icon("tags lg", text:"故障类别") %></div>
+      <div class= "list-group">
+        <% TroubleType.all.each do |ty| %>
+           <li class="list-group-item">
+             <%= link_to ty.name, '#', :class=>"class_troubletype", :data => {:tid => "#{ty.id}"}%>
+           </li>
+        <% end %>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-10">
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= fa_icon("book lg", text:"故障描述及处理意见") %></div>
+      <div class="panel-body">
+        <%= render 'list' %>
+        <%= link_to "新增故障描述", new_code_troubleshooting_path, id: "link_newtype",  data: {typeid: 0}, remote: true %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= render 'dialog' %>
+

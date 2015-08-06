@@ -1,0 +1,17 @@
+$('.modal-body').html('<%= j render("form") %>');
+$('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> 新增 故障描述");
+
+
+
+var current_typeid = $('#link_newtype').attr('data-typeid')
+console.log("current_typeid = " + current_typeid)
+$(".modal-body #troubletypeid").val( current_typeid )
+
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	  $('.first_input').focus()
+})
+
+
+

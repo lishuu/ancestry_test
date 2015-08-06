@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @code_troubleshooting.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @code_troubleshooting.code %>
+</p>
+
+<p>
+  <strong>Trouble type:</strong>
+  <%= @code_troubleshooting.trouble_type_id %>
+</p>
+
+<p>
+  <strong>Shooting:</strong>
+  <%= @code_troubleshooting.shooting %>
+</p>
+
+<p>
+  <strong>Order num:</strong>
+  <%= @code_troubleshooting.order_num %>
+</p>
+
+<%= link_to 'Edit', edit_code_troubleshooting_path(@code_troubleshooting) %> |
+<%= link_to 'Back', code_troubleshootings_path %>

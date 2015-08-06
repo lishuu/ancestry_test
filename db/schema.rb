@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703072551) do
+ActiveRecord::Schema.define(version: 20150803031608) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20150703072551) do
   end
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry"
+
+  create_table "code_troubleshootings", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "trouble_type_id"
+    t.text     "shooting"
+    t.integer  "order_num"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +50,12 @@ ActiveRecord::Schema.define(version: 20150703072551) do
   end
 
   create_table "heating_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trouble_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

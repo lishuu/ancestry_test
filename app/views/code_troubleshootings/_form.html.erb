@@ -1,0 +1,30 @@
+
+<%= form_for(@code_troubleshooting, remote: true, :html => {:role => "form"}) do |f| %>
+  <div id="error_explanation" class="bg-danger text-danger">
+  </div>
+
+  <%= hidden_field_tag 'troubletypeid', '1' %>
+
+  <div class="form-group">
+    <%= f.label :name, "故障名称", :class => "control-label" %>
+    <%= f.text_field :name, :class => "form-control first_input" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :code, "故障编码", :class => "control-label" %>
+    <%= f.text_field :code, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :shooting, "处理意见", :class => "control-label" %>
+    <%= f.text_area :shooting, rows: 10, :id => "shooting_area",:class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :order_num, "排序码", :class => "control-label" %>
+    <%= f.text_field :order_num, :class => "form-control" %>
+  </div>
+
+  <%= f.submit @code_troubleshooting.new_record? ? "保存数据" : "更新数据", :class => "btn btn-primary" %>
+
+<% end %>

@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  # skip_before_filter :verify_authenticity_token, only: [:submit]
 
 	def index
 		# @category = Category.all

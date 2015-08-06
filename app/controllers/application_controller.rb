@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  helper_method :troubletype_sidebar
+
+  def troubletype_sidebar
+    @trouble_types = TroubleType.all
+  end
+
   # after_filter :flash_to_headers
 
   # def flash_to_headers
