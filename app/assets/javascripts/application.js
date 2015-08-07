@@ -19,6 +19,7 @@
 //= require bootstrap-sprockets
 //= require fnReloadAjax
 //= require toastr_rails
+//= require nprogress
 
 $(document).ajaxError(function(event,xhr,options,exc) {
     
@@ -35,6 +36,7 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 });
 
 $(document).ready(function() {
+
   toastr.options = {
     "closeButton": false,
     "debug": false,
@@ -51,9 +53,16 @@ $(document).ready(function() {
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
-  }
+  };
 
 });
+
+
+$(document).on('page:restore', function() { NProgress.remove(); });
+$(document).on('page:fetch',   function() { NProgress.start(); });
+$(document).on('page:change',  function() { NProgress.done(); });
+
+
 
 // $(document).ajaxComplete( function(event, request) {
 //   var flash = $.parseJSON(request.getResponseHeader('X-Flash-Messages'));

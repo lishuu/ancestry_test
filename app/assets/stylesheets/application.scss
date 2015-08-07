@@ -14,6 +14,7 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require toastr
  *= require_self
+ *= require nprogress
  */
 
 
@@ -21,6 +22,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import "nprogress";
 
 .header .navbar-brand b {
   color: #1D966B;
@@ -35,7 +37,6 @@ body {
   font-family: "微软雅黑";
   height: 100%;*/
 }
-
 
 
 

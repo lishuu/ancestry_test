@@ -27,12 +27,17 @@ getCodeTroubleshootings = ->
 $ ->
   $(document).on 'click', '.class_troubletype', (e) ->
     n = $(this).data("tid") 
-    console.log(n)
-    str = "cty/lists.json?ttid="+n
+    str = $(this).text()
     console.log(str)
+    $("#DataListTitle").text( "故障描述及处理意见".concat(' - ', str) )
+    str = "cty/lists.json?ttid="+n
     $('#code_troubleshooting_table').data('source', str)
     $('#link_newtype').attr('data-typeid', n)
-    console.log $('#link_newtype').attr('data-typeid')
     getCodeTroubleshootings()
 
+  $('#class_troubletype1').click()
+
+
 $(document).on('page:load', getCodeTroubleshootings);
+
+

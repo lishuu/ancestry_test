@@ -11,7 +11,7 @@
       <div class= "list-group">
         <% TroubleType.all.each do |ty| %>
            <li class="list-group-item">
-             <%= link_to ty.name, '#', :class=>"class_troubletype", :data => {:tid => "#{ty.id}"}%>
+             <%= link_to ty.name, '#', :id=>"class_troubletype"+"#{ty.id}", :class=>"class_troubletype", :data => {:tid => "#{ty.id}"}%>
            </li>
         <% end %>
         </div>
@@ -19,7 +19,7 @@
   </div>
   <div class="col-lg-10">
     <div class="panel panel-default">
-      <div class="panel-heading"><%= fa_icon("book lg", text:"故障描述及处理意见") %></div>
+      <div class="panel-heading"><lable id="DataListTitle">故障描述及处理意见<lable></div>
       <div class="panel-body">
         <%= render 'list' %>
         <%= link_to "新增故障描述", new_code_troubleshooting_path, id: "link_newtype",  data: {typeid: 0}, remote: true %>
