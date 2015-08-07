@@ -22,6 +22,7 @@ getCustomers = (currentNode) ->
   	when 1 then str = 'cd=' + currentNode.id  #片区节点
   	when 2 then str = 'cd=' + currentNode.getParentNode().id + '&cc=' + currentNode.id #小区节点
   	when 3 then str = 'cd=' + currentNode.getParentNode().getParentNode().id + '&cc=' + currentNode.getParentNode().id + '&cb=' + currentNode.id #楼宇节点
+    
 
   if $.fn.dataTable.isDataTable('#customer_table')
     table = $('#customer_table').DataTable()
