@@ -10,8 +10,8 @@
 
 # ds_daqing, ds_zhongshan, ds_qiaonan = bj.children.create( [{name: "大庆路片区"}, {name: "中山路片区"}, {name: "桥南片区"}] )
 
-# ds_daqing.children.create([
-# 	{name: "叉车五厂10号院"}, {name: "叉车五厂49号院"}, {name: "叉车五厂68号院"}, {name: "工农村"}, 
+# ds_daqing.children.create([# 	{name: "叉车五厂10号院"}, {name: "叉车五厂49号院"}, {name: "叉车五厂68号院"}, {name: "工农村"}, 
+
 # 	{name: "果品公司家属楼"}, {name: "恒源小区"}, {name: "金台联社"}, {name: "经纬花园"},
 # 	{name: "秦岭泊屋"}, {name: "新华村"}, {name: "西建康城"}, 
 # 	{name: "新秦造纸"}, {name: "油毡厂小区"}
@@ -31,18 +31,32 @@
 # 	])
 
 #  初始化热力公司管理片区属性结构
-bj = Category.where(:name => "某热力公司").first_or_create
-unless bj.nil?
-	bj.children.create( [ {name: "姜谭", :nodetype:1, :code:"JT"}, 
-											  {name: "大庆", :nodetype:1, :code:"DQ"}, 
-											  {name: "桥南", :nodetype:1, :code:"QN"}, 
-											  {name: "宝十", :nodetype:1, :code:"BS"}, 
-											  {name: "渭工", :nodetype:1, :code:"WG"}, 
-											  {name: "金陵", :nodetype:1, :code:"JL"}, 
-											  {name: "高新", :nodetype:1, :code:"GX"}, 
-											  {name: "马营", :nodetype:1, :code:"MY"}
-											 ] )
+puts "准备开始初始化数据..."
+if Category.count < 1
+	bj = Category.where(:name => "某热力公司").first_or_create
+	# unless bj.nil?
+	# 	bj.children.create( [ {name: "姜谭", nodetype:1, code:"JT"}, 
+	# 											  {name: "大庆", nodetype:1, code:"DQ"}, 
+	# 											  {name: "桥南", nodetype:1, code:"QN"}, 
+	# 											  {name: "宝十", nodetype:1, code:"BS"}, 
+	# 											  {name: "渭工", nodetype:1, code:"WG"}, 
+	# 											  {name: "金陵", nodetype:1, code:"JL"}, 
+	# 											  {name: "高新", nodetype:1, code:"GX"}, 
+	# 											  {name: "马营", nodetype:1, code:"MY"}
+	# 											 ] )
+	# end
+
+	# buildings = JSON.parse(File.read(File.join(Rails.root, 'public', 'buildings.csv')))
+	require 'open-uri'
+	require 'csv'
+	url = File.join(Rails.root, 'public', 'buildings.csv')
+	url_data = open(url).read()
+	CSV.parse(url_data).each do |row|
+		id, name, bz, order_num, d_id, code, d_name = row
+		puts "#{id}, #{name}, #{code}, #{d_id}, #{d_name}" 
+	end
 end
+
 
 
 heating_status = ["正常供热", "停止供热", "未知"]
