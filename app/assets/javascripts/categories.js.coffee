@@ -77,5 +77,6 @@ defaultTreeClick = ->
 
 $ ->
   getDistrictTree()
+  
 
 $(document).on('page:load', getDistrictTree);

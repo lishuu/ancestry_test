@@ -19,10 +19,25 @@ getJson = ->
 getCustomers = (currentNode) ->
   nt = currentNode.nodetype
   switch nt 
-  	when 1 then str = 'cd=' + currentNode.id  #片区节点
-  	when 2 then str = 'cd=' + currentNode.getParentNode().id + '&cc=' + currentNode.id #小区节点
-  	when 3 then str = 'cd=' + currentNode.getParentNode().getParentNode().id + '&cc=' + currentNode.getParentNode().id + '&cb=' + currentNode.id #楼宇节点
-    
+  	when 1  
+      str = 'cd=' + currentNode.id  #片区节点
+      $("#DataLabel").text(" - " + currentNode.name )
+      $('#newcustomer_lable').hide()
+
+  	when 2 
+      str = 'cd=' + currentNode.getParentNode().id + '&cc=' + currentNode.id #小区节点
+      $("#DataLabel").text(" - " + currentNode.getParentNode().name + " - " + currentNode.name )
+      $('#newcustomer_lable').hide()
+
+  	when 3
+      str = 'cd=' + currentNode.getParentNode().getParentNode().id + '&cc=' + currentNode.getParentNode().id + '&cb=' + currentNode.id #楼宇节点
+      $("#DataLabel").text(" -" + currentNode.getParentNode().getParentNode().name + " - " + currentNode.getParentNode().name + " - " + currentNode.name )
+      $('#newcustomer_lable').attr('data-buildingid', currentNode.id);
+      $('#newcustomer_lable').attr('data-communityid', currentNode.getParentNode().id);
+      $('#newcustomer_lable').attr('data-districtid', currentNode.getParentNode().getParentNode().id);
+      $('#newcustomer_lable').show()
+
+
 
   if $.fn.dataTable.isDataTable('#customer_table')
     table = $('#customer_table').DataTable()
@@ -37,5 +52,7 @@ getCustomers = (currentNode) ->
 
 $(document).ready ->
   getJson()
+  $('#newcustomer_lable').hide()
+
 
 $(document).on('page:load', getJson);

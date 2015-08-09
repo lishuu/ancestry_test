@@ -25,11 +25,36 @@
 
 # 	])
 
-
 # ds_qiaonan.children.create([
 
 #   {name: "五金公司"}, {name: "秀水居"}
 # 	])
 
+#  初始化热力公司管理片区属性结构
+bj = Category.where(:name => "某热力公司").first_or_create
+unless bj.nil?
+	bj.children.create( [ {name: "姜谭", :nodetype:1, :code:"JT"}, 
+											  {name: "大庆", :nodetype:1, :code:"DQ"}, 
+											  {name: "桥南", :nodetype:1, :code:"QN"}, 
+											  {name: "宝十", :nodetype:1, :code:"BS"}, 
+											  {name: "渭工", :nodetype:1, :code:"WG"}, 
+											  {name: "金陵", :nodetype:1, :code:"JL"}, 
+											  {name: "高新", :nodetype:1, :code:"GX"}, 
+											  {name: "马营", :nodetype:1, :code:"MY"}
+											 ] )
+end
+
+
 heating_status = ["正常供热", "停止供热", "未知"]
 heating_status.each{ |d| HeatingStatus.where(:name => d).first_or_create}
+
+heating_types = ["居民", "非居民"]
+heating_types.each{ |d| HeatingType.where(:name => d).first_or_create}
+
+customer_types = ["按计量收费", "按面积收费", "计量空转"]
+CustomerType.where(:name => customer_types[0]).first_or_create(:order_num => 1)
+CustomerType.where(:name => customer_types[1]).first_or_create(:order_num => 2)
+CustomerType.where(:name => customer_types[2]).first_or_create(:order_num => 3)
+
+charging_areas = ["金陵区域", "姜谭区域", "马营区域", "大庆区域", "高新区域", "桥南区域", "群众、宝十区域", "渭工区域"]
+charging_areas.each {|d| ChargingArea.where(:name=>d).first_or_create}

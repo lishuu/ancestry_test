@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803031608) do
+ActiveRecord::Schema.define(version: 20150809011101) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20150803031608) do
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry"
 
+  create_table "charging_areas", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "code_troubleshootings", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
@@ -32,6 +39,13 @@ ActiveRecord::Schema.define(version: 20150803031608) do
     t.integer  "order_num"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "customer_types", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "order_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -50,6 +64,12 @@ ActiveRecord::Schema.define(version: 20150803031608) do
   end
 
   create_table "heating_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "heating_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
