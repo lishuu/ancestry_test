@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
 	has_ancestry
-	validates :name, presence: true, length: { minimum: 3}
+	validates :name, presence: true
   validates :name, uniqueness: {scope: :ancestry, message: "重复，请确定您的输入！"}	
   validates :code, uniqueness: {scope: :ancestry, message: "重复，请确定您的输入！"}
 

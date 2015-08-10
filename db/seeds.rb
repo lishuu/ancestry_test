@@ -6,57 +6,59 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# bj = Category.create( name: "宝鸡热力" )
-
-# ds_daqing, ds_zhongshan, ds_qiaonan = bj.children.create( [{name: "大庆路片区"}, {name: "中山路片区"}, {name: "桥南片区"}] )
-
-# ds_daqing.children.create([# 	{name: "叉车五厂10号院"}, {name: "叉车五厂49号院"}, {name: "叉车五厂68号院"}, {name: "工农村"}, 
-
-# 	{name: "果品公司家属楼"}, {name: "恒源小区"}, {name: "金台联社"}, {name: "经纬花园"},
-# 	{name: "秦岭泊屋"}, {name: "新华村"}, {name: "西建康城"}, 
-# 	{name: "新秦造纸"}, {name: "油毡厂小区"}
-# 	])
-
-# ds_zhongshan.children.create([
-
-#   {name: "宝运花园41南区"}, {name: "中山西路长寿联社"}, {name: "复新村"}, {name: "金陵湾"}, 
-#   {name: "立新巷"}, {name: "市二建"}, {name: "瓦厂街129号楼"}, {name: "新华园"}, 
-#   {name: "中山西路"}
-
-# 	])
-
-# ds_qiaonan.children.create([
-
-#   {name: "五金公司"}, {name: "秀水居"}
-# 	])
-
 #  初始化热力公司管理片区属性结构
 puts "准备开始初始化数据..."
 if Category.count < 1
-	bj = Category.where(:name => "某热力公司").first_or_create
-	# unless bj.nil?
-	# 	bj.children.create( [ {name: "姜谭", nodetype:1, code:"JT"}, 
-	# 											  {name: "大庆", nodetype:1, code:"DQ"}, 
-	# 											  {name: "桥南", nodetype:1, code:"QN"}, 
-	# 											  {name: "宝十", nodetype:1, code:"BS"}, 
-	# 											  {name: "渭工", nodetype:1, code:"WG"}, 
-	# 											  {name: "金陵", nodetype:1, code:"JL"}, 
-	# 											  {name: "高新", nodetype:1, code:"GX"}, 
-	# 											  {name: "马营", nodetype:1, code:"MY"}
-	# 											 ] )
-	# end
+	@bj = Category.create!( name: "某热力公司" )
+	@dis_jt, @dis_dq, @dis_qn, @dis_bs, @dis_wg, @dis_jl, @dis_gx, @dis_my = 
+		@bj.children.create!( [ {name: "姜谭", nodetype:1, code:"JT"}, 
+												  {name: "大庆", nodetype:1, code:"DQ"}, 
+												  {name: "桥南", nodetype:1, code:"QN"}, 
+												  {name: "宝十", nodetype:1, code:"BS"}, 
+												  {name: "渭工", nodetype:1, code:"WG"}, 
+												  {name: "金陵", nodetype:1, code:"JL"}, 
+												  {name: "高新", nodetype:1, code:"GX"}, 
+												  {name: "马营", nodetype:1, code:"MY"}
+												 ] )
 
-	# buildings = JSON.parse(File.read(File.join(Rails.root, 'public', 'buildings.csv')))
 	require 'open-uri'
 	require 'csv'
+	puts "开始初始化小区信息..."
 	url = File.join(Rails.root, 'public', 'buildings.csv')
 	url_data = open(url).read()
 	CSV.parse(url_data).each do |row|
-		id, name, bz, order_num, d_id, code, d_name = row
-		puts "#{id}, #{name}, #{code}, #{d_id}, #{d_name}" 
+		id, name, remark, order_num, d_id, code, d_name = row
+	  if d_name=="姜谭" && d_id.to_i == 1
+	  	@dis_jt.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="大庆" && d_id.to_i == 2
+	  	@dis_dq.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="桥南" && d_id.to_i == 3
+	  	@dis_qn.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="宝十" && d_id.to_i == 4
+	  	@dis_bs.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="渭工" && d_id.to_i == 5
+	  	@dis_wg.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="金陵" && d_id.to_i == 6
+	  	@dis_jl.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="高新" && d_id.to_i == 7
+	  	@dis_gx.children.create( {name: name, nodetype: 2, code: code} )
+	  elsif d_name=="马营" && d_id.to_i == 8
+	  	@dis_my.children.create( {name: name, nodetype: 2, code: code} )
+	  end
 	end
-end
 
+ #  puts "开始初始化楼宇信息..."
+	# url = File.join(Rails.root, 'public', 'CSXTD.csv')
+	# url_data = open(url).read()
+	# CSV.parse(url_data).each do |row|
+ #    district_name, district_id, community_name, community_id, building_no = row
+ #    puts "当前处理小区：#{community_name} ..."
+ #    # @community = Category.where(:name=>community_name).take
+ #    @community = Category.find_by! name: community_name
+ #    @community.children.create( {name: building_no, nodetype: 3} )
+	# end
+
+end
 
 
 heating_status = ["正常供热", "停止供热", "未知"]
