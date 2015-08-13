@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  
 
   resources :code_troubleshootings
 
   resources :customers
   resources :categories
+  resources :meter_statuses
 
   root 'customers#index'
 

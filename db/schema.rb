@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809011101) do
+ActiveRecord::Schema.define(version: 20150813034722) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -59,8 +59,30 @@ ActiveRecord::Schema.define(version: 20150809011101) do
     t.integer  "room"
     t.integer  "heating_status_id"
     t.string   "address"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "room_old_code"
+    t.boolean  "is_metering"
+    t.integer  "customer_type_id"
+    t.integer  "metering_type_id"
+    t.integer  "meter_status_id"
+    t.integer  "heating_type_id"
+    t.float    "heating_area"
+    t.integer  "charging_area_id"
+    t.integer  "heating_station_id"
+    t.float    "meter_base_num"
+    t.float    "hv_current"
+    t.float    "hv_last"
+    t.float    "hv_last2"
+  end
+
+  create_table "heating_stations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "district_id"
+    t.integer  "charging_area_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "heating_statuses", force: :cascade do |t|
@@ -70,6 +92,20 @@ ActiveRecord::Schema.define(version: 20150809011101) do
   end
 
   create_table "heating_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meter_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "remark"
+    t.integer  "order_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "metering_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

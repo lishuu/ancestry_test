@@ -1,0 +1,30 @@
+
+<ol class="breadcrumb">
+  <li> <%= link_to content_tag(:i, fa_icon("home", text: "首页") ), "#" %> </li>
+  <li>系统管理</li>
+  <li class="active">表具运行状态</li>
+</ol>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><%= fa_icon("tags lg", text:"表具运行状态") %></div>
+  <div class="panel-body">
+    <table id class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>记录编号</th>
+          <th>表具运行状态</th>
+          <th>备注信息</th>
+          <th>排序码</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="meter_statuses">
+        <%= render @meter_statuses %>
+      </tbody>
+    </table>
+    <%= link_to "新增", new_meter_status_path, remote: true %>
+  </div>
+</div>
+
+<%= render 'dialog' %>

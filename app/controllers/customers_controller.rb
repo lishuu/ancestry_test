@@ -26,4 +26,14 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])	
   end
 
+  def new
+    @customer = Customer.new
+  end
+
+private
+
+  def set_customer
+    @customer = Customer.find(params[:id]) 
+  end
+
 end

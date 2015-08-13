@@ -1,0 +1,12 @@
+<tr id ="meter_status_<%= meter_status.id %>">
+  <td><%= meter_status.id %></td>
+  <td><%= meter_status.name %></td>
+  <td><%= meter_status.remark %></td>
+  <td><%= meter_status.order_num %></td>
+  <td>
+    <%= link_to( fa_icon('pencil-square-o'), edit_meter_status_path(meter_status), remote: true, class:"btn btn-xs btn-primary") %>
+  </td>
+  <td>
+    <%= link_to( fa_icon('trash-o'), meter_status, method: :delete, remote: true, data: {confirm: "您确定删除当前数据吗？"}, class: "btn btn-xs btn-danger") %>
+  </td>
+</tr>
