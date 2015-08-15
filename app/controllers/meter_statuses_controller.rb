@@ -36,13 +36,12 @@ class MeterStatusesController < ApplicationController
         format.json { head :no_content }
         format.js
       else
-        flash.now[:error] = "数据更新失败！"
-        format.json { render json: @code_troubleshooting.errors.full_messages, status: :unprocessable_entity }
+        format.json { render json: @meter_status.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
 
-  # 如果已被引用则无法删除
+  # 如果已被引用则无法删除尚未完成
   def destroy
     flash.now[:notice] = "记录删除成功！" if @meter_status.destroy
     respond_to do |format|

@@ -22,6 +22,8 @@
 //= require nprogress
 
 $(document).ajaxError(function(event,xhr,options,exc) {
+
+    $('#error_explanation').removeClass("hidden").addClass("visible");
     
     var errors = JSON.parse(xhr.responseText);
     // console.log(errors)

@@ -22,20 +22,25 @@ getCustomers = (currentNode) ->
   	when 1  
       str = 'cd=' + currentNode.id  #片区节点
       $("#DataLabel").text(" - " + currentNode.name )
-      $('#newcustomer_lable').hide()
+      $('#div_newcustomer').removeClass("visible").addClass("hidden");
 
   	when 2 
       str = 'cd=' + currentNode.getParentNode().id + '&cc=' + currentNode.id #小区节点
       $("#DataLabel").text(" - " + currentNode.getParentNode().name + " - " + currentNode.name )
-      $('#newcustomer_lable').hide()
+      $('#div_newcustomer').removeClass("visible").addClass("hidden");
 
   	when 3
       str = 'cd=' + currentNode.getParentNode().getParentNode().id + '&cc=' + currentNode.getParentNode().id + '&cb=' + currentNode.id #楼宇节点
       $("#DataLabel").text(" -" + currentNode.getParentNode().getParentNode().name + " - " + currentNode.getParentNode().name + " - " + currentNode.name )
-      $('#newcustomer_lable').attr('data-buildingid', currentNode.id);
-      $('#newcustomer_lable').attr('data-communityid', currentNode.getParentNode().id);
-      $('#newcustomer_lable').attr('data-districtid', currentNode.getParentNode().getParentNode().id);
-      $('#newcustomer_lable').show()
+      $('#newcustomer_label').attr('data-buildingid', currentNode.id);
+      $('#newcustomer_label').attr('data-communityid', currentNode.getParentNode().id);
+      ddd_id = currentNode.getParentNode().getParentNode().id
+      $('#newcustomer_label').attr('data-districtid', ddd_id);
+      $('#div_newcustomer').removeClass("hidden").addClass("visible");
+
+      $('#newcustomer_label').on 'click', ->
+        event.preventDefault()
+        $.get $(this).attr('data-href') + '?district_id=' + ddd_id, (data) ->
 
 
 
@@ -52,7 +57,6 @@ getCustomers = (currentNode) ->
 
 $(document).ready ->
   getJson()
-  $('#newcustomer_lable').hide()
-
+  $('#div_newcustomer').removeClass("visible").addClass("hidden")
 
 $(document).on('page:load', getJson);

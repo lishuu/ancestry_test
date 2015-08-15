@@ -19,8 +19,8 @@
       <div class="panel-heading">用户信息<lable id="DataLabel"></lable></div>
       <div class="panel-body">
         <%= render 'users' %>
-        <div>
-          <%= link_to "新增用户", new_customer_path, id: "newcustomer_lable", data: {}, remote: true %>
+        <div id="div_newcustomer">
+        <%= link_to "新增用户", "#", id: "newcustomer_label", data:{}, :"data-href"=>new_customer_path, remote: true %>
         </div>
       </div>
     </div>

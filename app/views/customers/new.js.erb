@@ -1,11 +1,18 @@
 $('.modal-body').html('<%= j render("form") %>');
-$('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> 新增 用户");
+$('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i> 新增 用户");
+$('#error_explanation').addClass("hidden");
 
 
+var cur_bid = $('#newcustomer_label').attr('data-buildingid')
+var cur_cid = $('#newcustomer_label').attr('data-communityid')
+var cur_did = $('#newcustomer_label').attr('data-districtid')
 
-// var current_typeid = $('#link_newtype').attr('data-typeid')
+$('#customer_district_id').val( cur_did )
+$('#customer_community_id').val( cur_cid )
+$('#customer_building_id').val( cur_bid )
+
 // console.log("current_typeid = " + current_typeid)
-$(".modal-body #troubletypeid").val( current_typeid )
+// $(".modal-body #troubletypeid").val( current_typeid )
 
 $('#dialog').modal("show");
 

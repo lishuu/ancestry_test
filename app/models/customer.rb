@@ -1,4 +1,7 @@
 class Customer < ActiveRecord::Base
+
+  validates :name, presence: true
+
 	belongs_to :district, class_name: 'Category', foreign_key: 'district_id'
 	# delegate :name, to: :district, prefix: true 
 	belongs_to :community, class_name: 'Category', foreign_key: 'community_id'

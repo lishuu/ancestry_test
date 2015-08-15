@@ -1,22 +1,32 @@
-<%= form_for(@customer, remote: true, :html => {:role => "form"}) do |f| %>
-  <div id="error_explanation" class="bg-danger text-danger">
+
+<%= simple_form_for @customer, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, :remote=>true do |f| %>
+
+  <div id="error_explanation" class="alert alert-danger">
+  </div>
+  <%= f.hidden_field :district_id, :value=>'-1' %>
+  <%= f.hidden_field :community_id, :value=>'-1' %>
+  <%= f.hidden_field :building_id, :value=>'-1' %>
+
+  <%= f.input :name, label: '业主名称' %>
+  <%= f.association :customer_type, label:'用户类型', :include_blank => false, :selected => 1 %>
+  <%= f.association :metering_type, label:'抄表类型',:include_blank => false, :selected => 1 %>
+  <%= f.input :hv_current, label: '当前热值(kWh)'  %>
+  <%= f.input :unit, label: '单元' %>
+  <%= f.input :floor, label: '楼层' %>
+  <%= f.input :room, label: '房号' %>
+  <%= f.association :heating_status, label: '供热状态', :include_blank=>false, :select=>1 %>
+  <%= f.association :heating_type, label: '供暖类型', :include_blank=>false, :select=>1 %>
+  <%= f.input :heating_area, label: '供热面积' %>
+  <%= f.association :charging_area, label: '网所', :include_blank=>false, :select=>1 %>
+  <%= f.association :heating_station, label: '换热站', :include_blank=>false, :select=>1 %>
+  <%= f.input :heating_station, label: '换热站', :collection=>@heating_stations, :label_method=>:name, :value_method=>:id, :include_blank=>false %>
+
+  <%= f.input :address, label: '大楼地址' %>
+  <%= f.input :meter_no, label: '表具编号' %>
+  <div>
+    <%= f.input :is_metering, :as=>:boolean, label: '热计量' %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :name, "业主名称", :class => "control-label" %>
-    <%= f.text_field :name, :class => "form-control first_input" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :remark, "备注信息", :class => "control-label" %>
-    <%= f.text_area :remark, rows: 10, :id => "remark_area",:class => "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :order_num, "排序码", :class => "control-label" %>
-    <%= f.text_field :order_num, :class => "form-control" %>
-  </div>
-
-  <%= f.submit @meter_status.new_record? ? "保存数据" : "更新数据", :class => "btn btn-primary" %>
+  <%= f.button :submit, @customer.new_record? ? "保存数据" : "更新数据", :class=>"btn btn-primary" %>
 
 <% end %>

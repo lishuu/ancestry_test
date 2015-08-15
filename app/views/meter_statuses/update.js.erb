@@ -1,4 +1,5 @@
+
 $('#dialog').modal('toggle')
-$("#notice").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
+// $("#notice").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
 $('#meter_status_<%= @meter_status.id %>').replaceWith('<%= j render (@meter_status) %>')
 
