@@ -1,0 +1,8 @@
+$('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i> 修改 数据");
+$('.modal-body').html('<%= j render("form") %>');
+$('#error_explanation').addClass("hidden");
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	  $('.first_input').focus()
+})

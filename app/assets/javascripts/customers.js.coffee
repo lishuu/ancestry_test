@@ -31,7 +31,7 @@ getCustomers = (currentNode) ->
 
   	when 3
       str = 'cd=' + currentNode.getParentNode().getParentNode().id + '&cc=' + currentNode.getParentNode().id + '&cb=' + currentNode.id #楼宇节点
-      $("#DataLabel").text(" -" + currentNode.getParentNode().getParentNode().name + " - " + currentNode.getParentNode().name + " - " + currentNode.name )
+      $("#DataLabel").text(" -" + currentNode.getParentNode().getParentNode().name + " - " + currentNode.getParentNode().name + " - " + currentNode.name + ' 号楼' )
       $('#newcustomer_label').attr('data-buildingid', currentNode.id);
       $('#newcustomer_label').attr('data-communityid', currentNode.getParentNode().id);
       ddd_id = currentNode.getParentNode().getParentNode().id
@@ -43,19 +43,18 @@ getCustomers = (currentNode) ->
         $.get $(this).attr('data-href') + '?district_id=' + ddd_id, (data) ->
 
 
-
   if $.fn.dataTable.isDataTable('#customer_table')
     table = $('#customer_table').DataTable()
-    table.ajax.url( 'customers.json?' + str ).load();
+    table.ajax.url( 'customers.json?' + str ).load()
   else
 	  $('#customer_table').dataTable
 	    pagingType: "full_numbers"
-	    Processing: true
-	    ServerSide: true
-	    ajax: 'customers.json?'+str
+	    processing: true
+	    serverSide: true
+	    ajaxSource: 'customers.json?'+str
 	    oLanguage: "sUrl": "chinese.json"
 
-$(document).ready ->
+$ ->
   getJson()
   $('#div_newcustomer').removeClass("visible").addClass("hidden")
 

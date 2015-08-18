@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   def index
     cd = params[:cd]
@@ -42,6 +43,32 @@ class CustomersController < ApplicationController
         format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
       end
     end 
+  end
+
+  def edit
+    @heating_stations = HeatingStation.where(:district_id=>@customer.district_id)
+  end
+
+  def update
+    respond_to do |format|
+      if @customer.update(customer_params)
+        flash.now[:notice] = "数据更新成功！"
+        format.json { head :no_content}
+        format.js
+      else
+        flash.now[:error] = "数据更新失败！"
+        format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity}
+      end
+    end 
+  end
+
+  def destroy
+    flash.now[:notice] = "记录删除成功！" if @customer.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to customer_url }
+      format.json { head :no_content }
+    end
   end
 
 private

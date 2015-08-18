@@ -3,9 +3,12 @@
 
   <div id="error_explanation" class="alert alert-danger">
   </div>
-  <%= f.hidden_field :district_id, :value=>'-1' %>
-  <%= f.hidden_field :community_id, :value=>'-1' %>
-  <%= f.hidden_field :building_id, :value=>'-1' %>
+
+  <% if @customer.new_record? %>
+    <%= f.hidden_field :district_id, :value=>'-1' %>
+    <%= f.hidden_field :community_id, :value=>'-1' %>
+    <%= f.hidden_field :building_id, :value=>'-1' %>
+  <% end %>
 
   <%= f.input :name, label: '业主名称' %>
   <%= f.association :customer_type, label:'用户类型', :include_blank => false, :selected => 1 %>
@@ -18,8 +21,11 @@
   <%= f.association :heating_type, label: '供暖类型', :include_blank=>false, :select=>1 %>
   <%= f.input :heating_area, label: '供热面积' %>
   <%= f.association :charging_area, label: '网所', :include_blank=>false, :select=>1 %>
-  <%= f.association :heating_station, label: '换热站', :include_blank=>false, :select=>1 %>
-  <%= f.input :heating_station, label: '换热站', :collection=>@heating_stations, :label_method=>:name, :value_method=>:id, :include_blank=>false %>
+  <% if @customer.new_record? %>
+    <%= f.input :heating_station_id, label: '换热站', :collection=>@heating_stations, :label_method=>:name, :value_method=>:id, prompt: '=请选择=',:include_blank=>false %>
+  <% else %>
+    <%= f.input :heating_station_id, label: '换热站', :collection=>@heating_stations, :label_method=>:name, :value_method=>:id, :include_blank=>false %>
+  <% end %>
 
   <%= f.input :address, label: '大楼地址' %>
   <%= f.input :meter_no, label: '表具编号' %>

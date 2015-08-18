@@ -1,5 +1,5 @@
 class CustomersDatatable
-	delegate :params, :h, :link_to, to: :@view
+	delegate :params, :h, :link_to, :fa_icon, :edit_customer_path, to: :@view
 
 	def initialize(view, param1)
 		@view = view
@@ -20,16 +20,17 @@ private
   def data
   	customers.map do |c|
   		[
+        c.id, 
   			link_to(c.name, c),
   			c.meter_no,
-  			c.district_name,
-  			c.community_name,
   			c.building_name,
   			c.unit,
   			c.floor,
   			c.room,
   			c.heating_status_name,
-  			c.address
+        link_to( fa_icon('pencil-square-o'), edit_customer_path(c), remote: true, class: "btn btn-xs btn-primary" ),
+        link_to( fa_icon('trash-o'), c, method: :delete, remote: true, data: { confirm: "您确定删除当前数据吗？" }, class: "btn btn-xs btn-danger" )
+ 
   		]
   	end
   end
