@@ -21,4 +21,6 @@ class Customer < ActiveRecord::Base
   belongs_to :charging_area, class_name: 'ChargingArea', foreign_key: 'charging_area_id' #网所信息
 
   belongs_to :heating_station, class_name: 'HeatingStation', foreign_key: 'heating_station_id' #换热站信息
+
+  has_many :maintenances
 end

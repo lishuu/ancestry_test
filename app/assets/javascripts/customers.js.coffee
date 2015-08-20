@@ -54,8 +54,7 @@ getCustomers = (currentNode) ->
 	    ajaxSource: 'customers.json?'+str
 	    oLanguage: "sUrl": "chinese.json"
 
-$ ->
+
+$(document).on 'ready page:load', ->
   getJson()
   $('#div_newcustomer').removeClass("visible").addClass("hidden")
-
-$(document).on('page:load', getJson);

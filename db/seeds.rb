@@ -73,7 +73,6 @@ if HeatingStation.count < 1
     @charging_area = ChargingArea.where(:name => charging_area).take
     @district.heating_stations.create!(name: name, charging_area_id: @charging_area.id)
   end
-
 end
 
 if MeterStatus.count < 1
@@ -84,6 +83,11 @@ if MeterStatus.count < 1
     id,name,remark,order_num = row
     MeterStatus.create!(name: name, remark: remark, order_num: order_num.to_i)
 	end
+end
+
+if Team.count < 1 
+	teams = ["宝鸡热力客服", "惠众（热力）", "立邦电子（汇中）", "伟岸", "天罡", "誉达电子（瑞纳）"]
+	teams.each{ |d| Team.where(:name => d).first_or_create}
 end
 
 metering_types = ["远传抄表", "人工抄表"]

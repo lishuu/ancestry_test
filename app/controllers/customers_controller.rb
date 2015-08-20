@@ -25,6 +25,8 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])	
+    # session[:current_customer_id] = @customer.id 
+    render :layout => false
   end
 
   def new

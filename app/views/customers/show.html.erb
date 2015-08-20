@@ -1,1 +1,44 @@
-<h1><%= @customer.name %></h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>供热计量运维管理平台</title>
+  <%= stylesheet_link_tag "application", params[:controller], :media => "all", 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag('application') %>
+  <%= javascript_include_tag('single_customer.js') %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="row">
+ " "
+</div>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <%= @customer.name %> </div>
+    <div class="panel-body">
+      <%= render @customer %>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 表具运维管理</div>
+    <div class="panel-body">
+      <%= render "maintenance", :local => @customer %>
+      <div id="div_newrecord">
+        <%= link_to "新增维护记录", new_maintenance_path(:id=>@customer.id), id: "newrecord_label", remote: true %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> 表号变更管理</div>
+    <div class="panel-body">
+      <%= render @customer %>
+    </div>
+  </div>
+
+<%= render 'dialog' %>
+
+</div>
+</body>
+</html>

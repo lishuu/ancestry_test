@@ -20,6 +20,7 @@
 //= require fnReloadAjax
 //= require toastr_rails
 //= require nprogress
+//= require bootstrap-datetimepicker
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

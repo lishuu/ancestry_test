@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  team_id: 1
+  worker: MyString
+  work_date: MyString
+  date: MyString
+  meter_status_id: 1
+  hv: 1.5
+  remark: MyString
+
+two:
+  customer_id: 1
+  team_id: 1
+  worker: MyString
+  work_date: MyString
+  date: MyString
+  meter_status_id: 1
+  hv: 1.5
+  remark: MyString

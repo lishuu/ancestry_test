@@ -1,0 +1,40 @@
+
+
+<div class="row">
+  <div class="col-md-4">所属片区：<%= @customer.district.name %></div>
+  <div class="col-md-4">所属小区：<%= @customer.community.name %></div>
+  <div class="col-md-4">所属楼号：<%= @customer.building.name %></div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">所属单元：<%= @customer.unit %></div>
+  <div class="col-md-4">楼层楼层：<%= @customer.floor %></div>
+  <div class="col-md-4">所属房间：<%= @customer.room %></div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">供热状态：<%= @customer.heating_status.name %></div>
+  <div class="col-md-4">用户类型：<%= @customer.customer_type.name %></div>
+  <div class="col-md-4">抄表方式：<%= @customer.metering_type.name %></div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">运行状态：<%= @customer.meter_status.name if @customer.meter_status %></div>
+  <div class="col-md-4">供暖类型：<%= @customer.heating_type.name if @customer.heating_type %></div>
+  <div class="col-md-4">所属网所：<%= @customer.charging_area.name if @customer.charging_area %></div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">所属换热站：<%= @customer.heating_station.name if @customer.heating_station %></div>
+
+  <div class="col-md-4">供热面积：<%= @customer.heating_area %></div>
+  <div class="col-md-4">表具底数：<%= @customer.meter_base_num %></div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-4">当前热值：<%= @customer.hv_current %></div>
+  <div class="col-md-4">上个供暖季用热量：<%= @customer.hv_last %></div>
+  <div class="col-md-4">上上个供暖季用热量：<%= @customer.hv_last2 %></div>
+
+</div>

@@ -1,0 +1,15 @@
+
+<%= simple_form_for @maintenance, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, :remote=>true do |f| %>
+
+  <div id="error_explanation" class="alert alert-danger">
+  </div>
+  <%= f.association :team, label:'运维队伍', :include_blank=>false %>
+  <%= f.input :worker, label: '运维人员' %>
+  <%= f.input :work_date, as: :date_time_picker, label: '运维日期' %>
+
+  <%= f.association :meter_status, label:'表计运行状态', :include_blank=>false %>
+  <%= f.input :hv, label: '现场热值' %>
+  <%= f.input :remark, label: '备注信息' %>
+  
+  <%= f.button :submit, @maintenance.new_record? ? "保存数据" : "更新数据", :class=>"btn btn-primary" %>
+<% end %>

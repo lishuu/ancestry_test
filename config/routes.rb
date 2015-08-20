@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :categories
   resources :meter_statuses
+  resources :maintenances
 
   root 'customers#index'
 
@@ -12,5 +13,6 @@ Rails.application.routes.draw do
   get 'communities/index'
   get 'distrcits', to:'categories#load'
   get 'cty/lists', to:  'code_troubleshootings#datatable_ajax'
+  get 'mlist', to: 'maintenances#datatable_ajax'
   
 end

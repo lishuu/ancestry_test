@@ -15,6 +15,7 @@
  *= require toastr
  *= require_self
  *= require nprogress
+ *= require bootstrap-datetimepicker
  */
 
 
@@ -23,6 +24,7 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "nprogress";
+@import "bootstrap-datetimepicker";
 
 .header .navbar-brand b {
   color: #1D966B;

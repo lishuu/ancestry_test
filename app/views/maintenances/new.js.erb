@@ -1,0 +1,20 @@
+$('.modal-body').html('<%= j render("form") %>');
+$('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i> 新增 运维记录");
+$('#error_explanation').addClass("hidden");
+$('#dialog').modal("show");
+
+$('.form_datetime').datetimepicker({
+    autoclose: true,
+    todayBtn: true,
+    pickerPosition: "bottom-left",
+    format: 'yyyy-mm-dd'
+ 
+});
+
+$('#dialog').on('shown.bs.modal', function () {
+	  $('.first_input').focus()
+
+})
+
+
+
