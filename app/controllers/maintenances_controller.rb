@@ -34,7 +34,7 @@ class MaintenancesController < ApplicationController
 
 private
   def maintenance_params
-    params.require(:maintenance).permit(:custmer_id, :team_id, :worker, :work_date, :meter_status_id, :hv, :remark)
+    params.require(:maintenance).permit(:custmer_id, :team_id, :worker, :work_date, :meter_status_id, :hv, :remark, :is_sync)
   end
 
   # def set_customer
