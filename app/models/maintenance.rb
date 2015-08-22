@@ -1,4 +1,6 @@
+
 class Maintenance < ActiveRecord::Base
+	# include ActionController::Base
 	attr_accessor :is_sync
 
 	validates :customer_id, :worker, :work_date, :hv, presence: true
@@ -14,7 +16,13 @@ private
 			current_customer = Customer.find(self.customer_id)
 			current_customer.hv_current = self.hv
 			current_customer.meter_status_id = self.meter_status.id
-			current_customer.save!
+			if current_customer.save!
+				# redirect_to customers_path(self.customer_id)
+				# redirect_to(customers_path(self.customer_id), status: 301)
+				# redirect_to customer_path(current_customer)
+				# p "=============================> 刷新页面！"
+				# ApplicationController.redirect_to Rails.application.routes.url_helpers.customer_path(current_customer)
+			end
 		end
 	end
 end
