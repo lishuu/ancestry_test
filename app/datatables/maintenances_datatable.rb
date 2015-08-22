@@ -56,7 +56,7 @@ private
   end
 
    def sort_column
-     columns = %w[work_date]
+     columns = %w[id work_date]
      columns[params[:iSortCol_0].to_i]
    end
 

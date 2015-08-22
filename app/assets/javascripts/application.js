@@ -21,6 +21,7 @@
 //= require toastr_rails
 //= require nprogress
 //= require bootstrap-datetimepicker
+//= require bootstrap-datetimepicker.zh-CN
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

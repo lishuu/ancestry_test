@@ -13,7 +13,7 @@ var getMaintenanceData = function() {
           "sUrl": "../chinese.json",
         },
         columns: [
-          {width: "5%",  orderable: false},
+          {width: "5%" },
           {width: "15%", orderable: false},
           {width: "10%", orderable: false},
           {widht: "25%", orderable: false},
@@ -31,11 +31,13 @@ $(document).ready( function() {
 
   getMaintenanceData();
 
-  $('#date_time_picker').datetimepicker({
-      autoclose: true,
-      todayBtn: true,
-      pickerPosition: "bottom-left",
-      format: 'yyyy-mm-dd'
-  });
+  // $('#date_time_picker').datetimepicker({
+  //     autoclose: true,
+  //     todayBtn: true,
+  //     pickerPosition: "bottom-left",
+  //     format: 'yyyy-mm-dd'
+  //     // pickDate: true,
+  //     // pickTime: false
+  // });
 
 });

@@ -3,16 +3,43 @@ $('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i> 新增 运维记�
 $('#error_explanation').addClass("hidden");
 $('#dialog').modal("show");
 
-$('.form_datetime').datetimepicker({
-    autoclose: true,
-    todayBtn: true,
-    pickerPosition: "bottom-left",
-    format: 'yyyy-mm-dd'
- 
-});
+
 
 $('#dialog').on('shown.bs.modal', function () {
-	  $('.first_input').focus()
+	$('.first_input').focus();
+
+  $(".form_datetime").datetimepicker({
+        language:  'zh-CN',  
+        weekStart: 1,  
+        todayBtn:  1,  
+        autoclose: 1,  
+        todayHighlight: 1,  
+        startView: 2,  
+        minView: 2,  
+        forceParse: 0,
+        format: 'yyyy-mm-dd'
+	});
+
+  // $('#maintenance_work_date').datetimepicker({  
+  //     language:  'zh-CN',  
+  //     weekStart: 1,  
+  //     todayBtn:  1,  
+  //     autoclose: 1,  
+  //     todayHighlight: 1,  
+  //     startView: 2,  
+  //     minView: 2,  
+  //     forceParse: 0  
+  // });  
+
+	// $('#maintenance_work_date').datetimepicker({
+	//     autoclose: true,
+	//     todayBtn: true,
+	//     pickerPosition: "bottom-left",
+	//     format: 'yyyy-mm-dd',
+	//     pickDate: true,
+	//     pickTime: false
+	// });
+
 
 })
 
