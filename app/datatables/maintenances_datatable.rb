@@ -9,7 +9,7 @@ class MaintenancesDatatable
 	def as_json(ooptins = {})
 		{
 			sEcho: params[:sEcho].to_i,
-			iTotalRecords: Maintenance.count,
+			iTotalRecords: maintenances.count, # Maintenance.count, 将不显示 "(由 72 项结果过滤)" ，72 is Model.count
 			iTotalDisplayRecords: maintenances.total_entries, 
 			aaData: data
 		}
@@ -38,7 +38,6 @@ private
   end
 
   def fetch_maintenances
-  	puts "=============================>"
   	maintenances = Maintenance.where( @c ).order("#{sort_column} #{sort_direction}")
     maintenances = maintenances.page(page).per_page(per_page)
     if params[:sSearch].present?

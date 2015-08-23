@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :code_troubleshootings
+  resource :meter_changings
 
   resources :customers
   resources :categories
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
   get 'distrcits', to:'categories#load'
   get 'cty/lists', to:  'code_troubleshootings#datatable_ajax'
   get 'mlist', to: 'maintenances#datatable_ajax'
+  get 'meterchanginglist', to: 'meter_changings#datatable_ajax'
   
 end

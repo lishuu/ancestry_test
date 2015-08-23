@@ -27,9 +27,41 @@ var getMaintenanceData = function() {
     }
 };
 
+var getMeterChangingData = function() {
+  var mctable;
+  if ($.fn.dataTable.isDataTable('#meterchanging_table')) {
+    table = $('#meterchanging_table').DataTable();
+    return table.ajax.url($('#meterchanging_table').data('source')).load();
+  } else {
+      return $('#meterchanging_table').dataTable({
+        pagingType: "full_numbers",
+        processing: true,
+        serverSide: true,
+        ajaxSource: $('#meterchanging_table').data('source'),
+        oLanguage: {
+          "sUrl": "../chinese.json",
+        },
+        columns: [
+          {width: "5%" },
+          {width: "15%", orderable: false},
+          {width: "10%", orderable: false},
+          {widht: "25%", orderable: false},
+          {widht: "20%", orderable: false},
+          {widht: "3%", orderable: false},
+          {widht: "3%", orderable: false},
+          {widht: "3%", orderable: false},
+          {width: "20%", orderable: false},
+          {width: "1%", searchable: false, orderable: false},
+          {width: "1%", searchable: false, orderable: false}
+        ]
+      });
+  }
+}
+
 $(document).ready( function() {
 
   getMaintenanceData();
+  getMeterChangingData();
 
   // $('#date_time_picker').datetimepicker({
   //     autoclose: true,
