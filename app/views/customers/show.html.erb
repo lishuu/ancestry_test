@@ -39,12 +39,12 @@
     <div class="panel-body">
       <%= render "meterchanging", :local => @customer %>
       <div>
-        <%= link_to "表号变更", new_meter_changings_path(:id=>@customer_id), id: "newchangingrecord_label", remote: true %>
+        <%= link_to "表号变更", new_meter_changing_path(:id =>@customer.id), id: "newchangingrecord_label", remote: true %>
       </div>
     </div>
   </div>
 
-<%= render 'dialog' %>
+<%= render 'layouts/dialog' %>
 
 </div>
 </body>

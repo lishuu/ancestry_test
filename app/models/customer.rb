@@ -24,5 +24,5 @@ class Customer < ActiveRecord::Base
 
   has_many :maintenances
 
-  has_many :meterchangings
+  has_many :meter_changings
 end

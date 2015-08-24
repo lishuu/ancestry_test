@@ -1,9 +1,16 @@
 class MeterChangingsController < ApplicationController
 
+  before_action :set_meter_changing, only: [:show, :edit, :update, :destroy]
+
 	def index
 	end
 
 	def new
+		session[:current_customer_id] = params[:id]
+		@meter_changing = MeterChanging.new
+	  @customer = Customer.find( session[:current_customer_id] )	
+		@meter_changing.past_no = @customer.meter_no
+		@meter_changing.past_val = @customer.hv_current
 	end
 
 	def datatable_ajax
@@ -14,5 +21,41 @@ class MeterChangingsController < ApplicationController
     	format.json { render json: MeterChangingsDatatable.new( view_context, meterchanging_filters )}
     end	  	
 	end
+
+	def create
+	  @customer = Customer.find( session[:current_customer_id] )	
+	  @meter_changing = @customer.meter_changings.build( meter_changing_params )
+	  respond_to do |format|
+	  	if @meter_changing.save
+	  		flash.now[:notice] = "数据更新成功！"
+	  		format.json { head :no_content }
+	  		format.js
+	  	else
+	  		format.json { render json: @meter_changing.errors.full_messages, status: :unprocessable_entity}
+	  	end
+	  end
+	end
+
+	def edit
+		
+	end
+
+	def update
+		
+	end
+
+	def destroy
+		
+	end
+
+private
+
+  def meter_changing_params
+    params.require(:meter_changing).permit(:customer_id, :team_id, :worker, :work_date, :past_no, :past_val, :current_no, :current_val, :remark)
+  end
+
+  def set_meter_changing
+  	@meter_changing = MeterChanging.find(params[:id])
+  end
 
 end

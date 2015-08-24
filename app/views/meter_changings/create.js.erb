@@ -1,0 +1,11 @@
+
+$('#dialog').modal('toggle');
+$("#notice").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
+
+var mycheckbox = $('#meter_changing_is_sync');
+
+if (mycheckbox.prop('checked')) {
+	window.location.reload();
+} else {
+	$('#meterchanging_table').dataTable().fnReloadAjax();
+}

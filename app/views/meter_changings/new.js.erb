@@ -1,0 +1,20 @@
+$('.modal-body').html('<%= j render("form") %>');
+$('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i> 新增 表计变更记录");
+$('#error_explanation').addClass("hidden");
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	$('.first_input').focus();
+
+  $(".form_datetime").datetimepicker({
+        language:  'zh-CN',  
+        weekStart: 1,  
+        todayBtn:  1,  
+        autoclose: 1,  
+        todayHighlight: 1,  
+        startView: 2,  
+        minView: 2,  
+        forceParse: 0,
+        format: 'yyyy-mm-dd'
+	});
+})

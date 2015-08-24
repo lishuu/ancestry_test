@@ -38,7 +38,7 @@ private
   end
 
   def fetch_maintenances
-  	maintenances = Maintenance.where( @c ).order("#{sort_column} #{sort_direction}")
+    maintenances = Maintenance.includes(:team, :meter_status).where( @c ).order("#{sort_column} #{sort_direction}")
     maintenances = maintenances.page(page).per_page(per_page)
     if params[:sSearch].present?
     	maintenances = maintenances.where("worker like :search or hv like :search", search: "%#{params[:sSearch]}%" )

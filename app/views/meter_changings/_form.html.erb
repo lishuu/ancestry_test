@@ -1,0 +1,17 @@
+<%= simple_form_for @meter_changing, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, :remote=>true do |f| %>
+
+  <div id="error_explanation" class="alert alert-danger">
+  </div>
+  <%= f.association :team, label:'运维队伍', :include_blank=>false %>
+  <%= f.input :worker, label: '运维人员' %>
+  <%= f.input :work_date, as: :date_time_picker, label: '运维日期' %>
+  <%= f.input :past_no, label: '原表号', :readonly=>true %>
+  <%= f.input :past_val, label: '原底数', :readonly=>true %>
+  <%= f.input :current_no, label: '现表号' %>
+  <%= f.input :current_val, label: '现底数' %>
+  <%= f.input :remark, label: '备注信息' %>
+
+  <%= f.input :is_sync, :as=>:boolean, label: '同步到热用户基本信息' %>
+  
+  <%= f.button :submit, @meter_changing.new_record? ? "保存数据" : "更新数据", :class=>"btn btn-primary" %>
+<% end %>

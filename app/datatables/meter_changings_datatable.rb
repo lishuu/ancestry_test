@@ -1,5 +1,5 @@
 class MeterChangingsDatatable
-	delegate :params, :link_to, :fa_icon, :edit_code_meter_changing_path, to: :@view
+	delegate :params,:link_to,:fa_icon,:edit_meter_changing_path, to: :@view
 
 	def initialize(view, param)
 		@view = view
@@ -18,7 +18,7 @@ class MeterChangingsDatatable
 private
 
   def data
-    mydatas.map do |c|
+    mydatas.map do |c	|
     	[
     		c.id, 
         c.team.name,
@@ -40,7 +40,8 @@ private
   end
 
   def fetch_datas
-  	meterchangings = MeterChanging.where( @c ).order("#{sort_column} #{sort_direction}")
+  	meterchangings = MeterChanging.includes(:team).where( @param).order("#{sort_column} #{sort_direction}")
+  	# meterchangings = MeterChanging.where( @c ).order("#{sort_column} #{sort_direction}")
     meterchangings = meterchangings.page(page).per_page(per_page)
     if params[:sSearch].present?
     	meterchangings = meterchangings.where("worker like :search or hv like :search", search: "%#{params[:sSearch]}%" )

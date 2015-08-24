@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :code_troubleshootings
-  resource :meter_changings
+  resources :meter_changings
 
   resources :customers
   resources :categories
