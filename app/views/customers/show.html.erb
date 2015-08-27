@@ -24,23 +24,38 @@
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-heading"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 表具运维管理</div>
+    <div class="panel-heading">
+      
+      <div class="row">
+        <div class="col-md-4"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>表具运维管理</b></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div id="div_new_m", class="text-right">
+            <%= link_to "表具维护", new_maintenance_path(:id=>@customer.id), id: "newrecord_label", remote: true %>
+          </div>
+        </div> 
+      </div>
+    </div>
     <div class="panel-body">
       <%= render "maintenance", :local => @customer %>
-      <div id="div_newrecord">
-        <%= link_to "新增维护记录", new_maintenance_path(:id=>@customer.id), id: "newrecord_label", remote: true %>
-      </div>
     </div>
 
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-heading"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> 表号变更管理</div>
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-4"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> <b>表号变更管理</b></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div id="div_new_changing", class="text-right">
+            <%= link_to "表号变更", new_meter_changing_path(:id =>@customer.id), id: "newchangingrecord_label", remote: true %>
+          </div>
+        </div> 
+      </div>
+    </div>
     <div class="panel-body">
       <%= render "meterchanging", :local => @customer %>
-      <div>
-        <%= link_to "表号变更", new_meter_changing_path(:id =>@customer.id), id: "newchangingrecord_label", remote: true %>
-      </div>
     </div>
   </div>
 

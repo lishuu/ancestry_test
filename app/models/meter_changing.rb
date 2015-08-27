@@ -12,6 +12,7 @@ private
 
   def sync_to_customer
    	if is_sync.to_i == 1
+   		p "=================> SYNC TO Customer..."
  			current_customer = Customer.find(self.customer_id)
 			current_customer.meter_no = self.current_no
 			current_customer.meter_base_num = self.current_val

@@ -41,9 +41,9 @@ private
   def fetch_customers
   	# customers = Customer.where( @c ).order("#{sort_column} #{sort_direction}")
     customers = Customer.joins(:heating_status, 
-      'left outer join Categories as d on customers.district_id = d.id',
-      'left outer join Categories as c on customers.community_id = c.id',
-      'left outer join Categories as b on customers.building_id = b.id')
+      'left outer join categories as d on customers.district_id = d.id',
+      'left outer join categories as c on customers.community_id = c.id',
+      'left outer join categories as b on customers.building_id = b.id')
     .select('customers.*, heating_statuses.name as heating_status_name, d.name as district_name, c.name as community_name, b.name as building_name')
     .where( @c ).order("#{sort_column} #{sort_direction}")
   	customers = customers.page(page).per_page(per_page)

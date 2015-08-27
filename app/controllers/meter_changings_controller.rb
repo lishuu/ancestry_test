@@ -41,17 +41,29 @@ class MeterChangingsController < ApplicationController
 	end
 
 	def update
-		
+	  respond_to do |format| 
+	  	if @meter_changing.update(meter_changing_params)
+        flash.now[:notice] = "数据更新成功！"
+        format.json { head :no_content}
+        format.js
+	  	else
+	  		flash.now[:error] = "数据更新失败！"
+	  		format.json {render json: @meter_changing.errors.full_messages, status: :unprocessable_entity }
+	  	end
+	  end	
 	end
 
 	def destroy
-		
+    flash.now[:notice] = "记录删除成功！" if @meter_changing.destroy
+    respond_to do |format|
+    	format.js
+    end
 	end
 
 private
 
   def meter_changing_params
-    params.require(:meter_changing).permit(:customer_id, :team_id, :worker, :work_date, :past_no, :past_val, :current_no, :current_val, :remark)
+    params.require(:meter_changing).permit(:customer_id, :team_id, :worker, :work_date, :past_no, :past_val, :current_no, :current_val, :remark, :is_sync)
   end
 
   def set_meter_changing

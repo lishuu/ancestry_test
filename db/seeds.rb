@@ -63,17 +63,6 @@ if Category.count < 1
 
 end
 
-if HeatingStation.count < 1 
-  puts "初始化换热站信息..."
-  url = File.join(Rails.root, 'public', 'heating_station.csv') 
-  url_data = open(url).read()
-  CSV.parse(url_data).each do |row|
-    id,name,district_id,charging_area_id,charging_area,district_name = row
-    @district = Category.where(:name => district_name).take
-    @charging_area = ChargingArea.where(:name => charging_area).take
-    @district.heating_stations.create!(name: name, charging_area_id: @charging_area.id)
-  end
-end
 
 if MeterStatus.count < 1
 	puts "初始化表具运行状态信息..."
@@ -86,8 +75,14 @@ if MeterStatus.count < 1
 end
 
 if Team.count < 1 
+	puts "初始化表具品牌信息..."
 	teams = ["宝鸡热力客服", "惠众（热力）", "立邦电子（汇中）", "伟岸", "天罡", "誉达电子（瑞纳）"]
 	teams.each{ |d| Team.where(:name => d).first_or_create}
+end
+
+if MeterBrand.count < 1
+	meter_brands = ["海威茨", "伟岸", "汇中", "瑞纳", "迈拓", "力创", "天罡", "三龙", "未知"]
+	meter_brands.each { |d| MeterBrand.where(:name => d).first_or_create }
 end
 
 metering_types = ["远传抄表", "人工抄表"]
@@ -106,3 +101,23 @@ CustomerType.where(:name => customer_types[2]).first_or_create(:order_num => 3)
 
 charging_areas = ["金陵区域", "姜谭区域", "马营区域", "大庆区域", "高新区域", "桥南区域", "群众、宝十区域", "渭工区域"]
 charging_areas.each {|d| ChargingArea.where(:name=>d).first_or_create}
+
+if HeatingStation.count < 1 
+  p "初始化换热站信息..."
+  url = File.join(Rails.root, 'public', 'heating_station.csv') 
+  url_data = open(url).read()
+  CSV.parse(url_data).each do |row|
+    id,name,district_id,charging_area_id,charging_area,district_name = row
+    @district = Category.where(:name => district_name).take
+    @charging_area = ChargingArea.where(:name => charging_area).take
+    @district.heating_stations.create!(name: name, charging_area_id: @charging_area.id)
+  end
+end
+
+if TroubleType.count < 1
+	p "初始化故障类别信息..."
+	trouble_types = ["客户服务", "现场运维"]
+  trouble_types.each { |d| TroubleType.where(:name=>d).first_or_create}	
+end
+
+p "===================== 恭喜！数据初始化完毕！ ========================"

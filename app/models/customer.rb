@@ -23,6 +23,5 @@ class Customer < ActiveRecord::Base
   belongs_to :heating_station, class_name: 'HeatingStation', foreign_key: 'heating_station_id' #换热站信息
 
   has_many :maintenances
-
   has_many :meter_changings
 end

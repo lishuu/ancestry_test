@@ -9,7 +9,7 @@
 
   <%= f.association :meter_status, label:'表计运行状态', :include_blank=>false %>
   <%= f.input :hv, label: '现场热值' %>
-  <%= f.input :remark, label: '备注信息' %>
+  <%= f.input :remark, label: '备注信息', :as=>:text, :input_html => {:rows => 3} %>
 
   <%= f.input :is_sync, :as=>:boolean, label: '同步到热用户基本信息' %>
   
