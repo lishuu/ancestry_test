@@ -30,8 +30,8 @@ var getMaintenanceData = function() {
 var getMeterChangingData = function() {
   var mctable;
   if ($.fn.dataTable.isDataTable('#meterchanging_table')) {
-    table = $('#meterchanging_table').DataTable();
-    return table.ajax.url($('#meterchanging_table').data('source')).load();
+    mctable = $('#meterchanging_table').DataTable();
+    return mctable.ajax.url($('#meterchanging_table').data('source')).load();
   } else {
       return $('#meterchanging_table').dataTable({
         pagingType: "full_numbers",
@@ -58,18 +58,43 @@ var getMeterChangingData = function() {
   }
 }
 
+var getProblemCustomerData = function() {
+  var pctable;
+  if ($.fn.dataTable.isDataTable('#problemcustomer_table')) {
+    pctable = $('#problemcustomer_table').DataTable();
+    return pctable.ajax.url($('#problemcustomer_table').data('source')).load();
+  } else {
+    return $('#problemcustomer_table').dataTable({
+      pagingType: "full_numbers",
+      processing: true,
+      serverSide: true,
+      ajaxSource: $('#problemcustomer_table').data('source'),
+      oLanguage: {
+        "sUrl": "../chinese.json",
+      },      
+      columns: [
+        {width: "5%" },
+        {width: "10%", orderable: false},
+        {width: "8%", orderable: false},
+        {widht: "8%", orderable: false},
+        {widht: "8%", orderable: false},
+        {widht: "8%", orderable: false},
+        {widht: "8%", orderable: false},
+        {widht: "8%", orderable: false},
+        {width: "9%", orderable: false},
+        {widht: "10%", orderable: false},
+        {width: "10%", orderable: false},        
+        {width: "1%", searchable: false, orderable: false},
+        {width: "1%", searchable: false, orderable: false}      
+      ]
+    });
+  }
+}
+
 $(document).ready( function() {
 
   getMaintenanceData();
   getMeterChangingData();
-
-  // $('#date_time_picker').datetimepicker({
-  //     autoclose: true,
-  //     todayBtn: true,
-  //     pickerPosition: "bottom-left",
-  //     format: 'yyyy-mm-dd'
-  //     // pickDate: true,
-  //     // pickTime: false
-  // });
+  getProblemCustomerData();
 
 });

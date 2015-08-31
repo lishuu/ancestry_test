@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag "application", params[:controller], :media => "all", 'data-turbolinks-track' => true %>
   <%= javascript_include_tag('application') %>
   <%= javascript_include_tag('single_customer.js') %>
+  <%= javascript_include_tag('problem_customers.js') %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -25,13 +26,32 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
+
+      <div class="row">
+        <div class="col-md-4"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>用热故障管理</b></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div id="div_new_m", class="text-right">
+            <%= link_to "用热故障", new_problem_customer_path(:id=>@customer.id), id: "newrecord_label", remote: true %>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <div class="panel-body">
+      <%= render "problemcustomer", :local => @customer %>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
       
       <div class="row">
         <div class="col-md-4"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>表具运维管理</b></div>
         <div class="col-md-4"></div>
         <div class="col-md-4">
           <div id="div_new_m", class="text-right">
-            <%= link_to "表具维护", new_maintenance_path(:id=>@customer.id), id: "newrecord_label", remote: true %>
+            <%= link_to "表具运维", new_maintenance_path(:id=>@customer.id), id: "newrecord_label", remote: true %>
           </div>
         </div> 
       </div>

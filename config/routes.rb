@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :meter_statuses
   resources :maintenances
+  resources :problem_customers
 
-  root 'customers#index'
+  root 'dashboards#index'
 
   get 'tree_full', to: 'categories#tree_full'
   get 'communities/index'
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   get 'cty/lists', to:  'code_troubleshootings#datatable_ajax'
   get 'mlist', to: 'maintenances#datatable_ajax'
   get 'meterchanginglist', to: 'meter_changings#datatable_ajax'
+  get 'problemcustomerlist', to: 'problem_customers#datatable_ajax'
   
 end

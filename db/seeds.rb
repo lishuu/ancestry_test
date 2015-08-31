@@ -120,4 +120,23 @@ if TroubleType.count < 1
   trouble_types.each { |d| TroubleType.where(:name=>d).first_or_create}	
 end
 
+if CodeTroubleshooting.count < 1
+	p "初始化客服故障处理信息..."
+	url = File.join(Rails.root, 'public', 'troubleshootings_1.csv')
+	url_data = open(url).read()
+	CSV.parse(url_data).each do |row|
+	  trouble,shooting,order_num = row	
+	  CodeTroubleshooting.create!(name: trouble, trouble_type_id: 1, shooting: shooting, order_num: order_num)
+	end
+
+	p "初始化客服故障处理信息..."
+	url = File.join(Rails.root, 'public', 'troubleshootings_2.csv')
+	url_data = open(url).read()
+	CSV.parse(url_data).each do |row|
+	  trouble,shooting,order_num = row	
+	  CodeTroubleshooting.create!(name: trouble, trouble_type_id: 2, shooting: shooting, order_num: order_num)
+	end
+
+end
+
 p "===================== 恭喜！数据初始化完毕！ ========================"

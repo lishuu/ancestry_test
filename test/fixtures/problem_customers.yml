@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workorder_no: MyString
+  customer_id: 1
+  meter_brand_id: 1
+  past_meterno: MyString
+  changing_meterno: MyString
+  past_basenum: 1.5
+  post_val: 1.5
+  current_basenum: 1.5
+  current_val: 1.5
+  team_id: 1
+  troubleshooting_id: 1
+  analysis: MyString
+  solving: MyString
+
+two:
+  workorder_no: MyString
+  customer_id: 1
+  meter_brand_id: 1
+  past_meterno: MyString
+  changing_meterno: MyString
+  past_basenum: 1.5
+  post_val: 1.5
+  current_basenum: 1.5
+  current_val: 1.5
+  team_id: 1
+  troubleshooting_id: 1
+  analysis: MyString
+  solving: MyString

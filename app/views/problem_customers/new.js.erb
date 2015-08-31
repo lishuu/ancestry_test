@@ -1,0 +1,28 @@
+$('.modal-body').html('<%= j render("form") %>');
+$('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i> 新增 用热故障数据");
+$('#error_explanation').addClass("hidden");
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	$('.first_input').focus();
+
+  $('#problem_customer_team_id').change(function() {
+    var $sel = $('#problem_customer_troubleshooting_id');
+    var val = $(this).val();
+    var campus = $('option:selected', this).text();
+    var str="";
+    if (campus.indexOf("客服") > -1) {
+    	str = "客户服务"
+    } else {
+    	str = "现场运维"
+    }
+    if ( val ) {
+      $('optgroup, optgroup > option', $sel).hide();
+      $('optgroup[label="' + str + '"]', $sel).children().andSelf().show();
+    } 
+    else {
+    	$('option,optgroup', $sel).show();
+    }
+  });
+
+})

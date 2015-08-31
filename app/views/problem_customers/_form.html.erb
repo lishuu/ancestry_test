@@ -1,0 +1,23 @@
+<%= simple_form_for @problem_customer, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, :remote=>true do |f| %>
+
+  <div id="error_explanation" class="alert alert-danger">
+  </div>
+  
+  <%= f.association :meter_brand, label:'热表品牌', :prompt=>"=请选择=", :include_blank=>false %>
+  <%= f.input :past_meterno, label: '原表号', :readonly=>true %>
+  <%= f.input :changing_meterno, label: '更改表号' %>
+
+  <%= f.input :past_basenum, label: '底数（原）', :readonly=>true %>
+  <%= f.input :past_val, label: '用热量（原）', :readonly=>true %>
+
+  <%= f.input :current_basenum, label: '底数（现）' %>
+  <%= f.input :current_val, label: '用热量（现）' %>
+
+  <%= f.association :team, label:'任务指派', :prompt=>"=请选择=",:include_blank=>false %>
+  <%= f.input :troubleshooting_id, label:'原因分析', :prompt=>"=请选择=", :collection => TroubleType.order(:name), as: :grouped_select, :group_method => :code_troubleshootings %>
+
+  <%= f.input :analysis, label: '现场问题描述', :as=>:text, :input_html=>{:rows=>3} %>  
+  <%= f.input :solving, label: '现场处理步骤', :as=>:text, :input_html=>{:rows=>3} %>
+
+  <%= f.button :submit, @problem_customer.new_record? ? "保存数据" : "更新数据", :class=>"btn btn-primary" %>
+<% end %>
