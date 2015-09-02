@@ -17,10 +17,9 @@
         <a href="/" class="navbar-brand"><b>应时为</b> 供热计量运维管理平台</a>
       </div>
         <ul class="nav navbar-nav">
-          <li class=""><a href="/topics">运行维护</a></li>
-          <li class=""><a href="/wiki">不要子菜单</a></li>
-          <li class=""><a href="/jobs">表号变更</a></li>
-          <li class=""><a href="/twitter">热用户管理</a></li>
+          <li><%= link_to '用热故障管理', customers_path%></li>
+          <li><%= link_to '表具运维管理', customers_path%></li>
+          <li><%= link_to '表号变更管理', customers_path%></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统管理<span class="caret"></span></a>
               <ul class="dropdown-menu">

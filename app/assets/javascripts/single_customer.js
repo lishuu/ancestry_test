@@ -73,19 +73,17 @@ var getProblemCustomerData = function() {
         "sUrl": "../chinese.json",
       },      
       columns: [
-        {width: "5%" },
-        {width: "10%", orderable: false},
-        {width: "8%", orderable: false},
-        {widht: "8%", orderable: false},
-        {widht: "8%", orderable: false},
-        {widht: "8%", orderable: false},
-        {widht: "8%", orderable: false},
-        {widht: "8%", orderable: false},
-        {width: "9%", orderable: false},
-        {widht: "10%", orderable: false},
-        {width: "10%", orderable: false},        
-        {width: "1%", searchable: false, orderable: false},
-        {width: "1%", searchable: false, orderable: false}      
+        {orderable: false },
+        {orderable: false},
+        {orderable: false},
+        {orderable: false},
+        {orderable: false},
+        {orderable: false},
+        {orderable: false},
+        {orderable: false},        
+        {orderable: false},    
+        {searchable: false, orderable: false},
+        {searchable: false, orderable: false}      
       ]
     });
   }

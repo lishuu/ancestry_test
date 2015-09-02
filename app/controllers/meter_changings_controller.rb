@@ -27,7 +27,7 @@ class MeterChangingsController < ApplicationController
 	  @meter_changing = @customer.meter_changings.build( meter_changing_params )
 	  respond_to do |format|
 	  	if @meter_changing.save
-	  		flash.now[:notice] = "数据更新成功！"
+	  		flash.now[:notice] = "数据保存成功！"
 	  		format.json { head :no_content }
 	  		format.js
 	  	else

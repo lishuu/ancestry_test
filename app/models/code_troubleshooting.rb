@@ -12,10 +12,12 @@ class CodeTroubleshooting < ActiveRecord::Base
 		super.merge({'full_name' => full_name})
 	end
 
-	def self.full_name_collection
-		@cts = CodeTroubleshooting.all
-    @cts.all.collect { |u| [u.id, u.full_name]}
-    return @cts
+	def self.full
+		# @cts = CodeTroubleshooting.all
+  #   @cts.all.collect { |u| [u.id, u.full_name]}
+  #   return @cts
+
+    CodeTroubleshooting.pluck(:id, :name)
 	end
 
 end

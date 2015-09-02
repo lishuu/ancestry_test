@@ -20,12 +20,13 @@ private
   def data
   	mydatas.map do |c|
   		[
-  			c.id,
+  			# c.id,
+        c.workorder_no,
   			c.meter_brand.name,
   			c.past_meterno,
   			c.changing_meterno,
-  			c.past_basenum,
-  			c.past_val,
+  			# c.past_basenum,
+  			# c.past_val,
   			c.current_basenum,
   			c.current_val,
   			c.team.name,
