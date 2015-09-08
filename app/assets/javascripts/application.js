@@ -66,6 +66,12 @@ $(document).on('page:restore', function() { NProgress.remove(); });
 $(document).on('page:fetch',   function() { NProgress.start(); });
 $(document).on('page:change',  function() { NProgress.done(); });
 
+// $(document).on 'page:fetch', ->
+//   NProgress.start()
+// $(document).on 'page:restore', ->
+//   NProgress.remove()
+// $(document).on 'page:change',  ->
+//   NProgress.done()
 
 
 // $(document).ajaxComplete( function(event, request) {
